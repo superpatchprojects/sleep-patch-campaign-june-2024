@@ -99,7 +99,6 @@ body {
     border-bottom-right-radius: 120px;
 }
 
-
 .rem-superpatch-lg {
     top: 50%;
     left: 50%;
@@ -109,7 +108,6 @@ body {
     position: absolute;
     object-fit: contain;
     transform: translate(-50%, -50%);
-
 }
 
 .benefit {
@@ -120,7 +118,6 @@ body {
     position: absolute;
     transform: translate(-106%, -88%);
 }
-
 
 .benefit-bg {
     position: absolute;
@@ -144,7 +141,7 @@ body {
 }
 
 .light-purple-bg {
-    background-color: #F3EDEB;
+    background-color: #f3edeb99;
     border-radius: 10px;
 }
 
