@@ -58,6 +58,13 @@ body {
     color: #000000;
 }
 
+.rem-patch-section .rem-product {
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 8 / 6;
+}
+
 .sleep-deeply {
     font-weight: 400;
 }
