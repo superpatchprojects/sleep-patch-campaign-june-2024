@@ -28,6 +28,10 @@ body {
     z-index: 2;
 }
 
+.info-banner .contact-link {
+    color: #FFFFFF;
+}
+
 .banner {
     position: absolute;
     top: 0;
@@ -257,6 +261,11 @@ body {
     }
 
     .about-rem-section img {
+        object-fit: cover;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1.75;
+        object-position: center;
         border-radius: 10px;
     }
 
