@@ -148,7 +148,7 @@ body {
     padding: 10rem 0rem;
 }
 
-.playButton {
+#playButton {
     cursor: pointer;
 }
 
