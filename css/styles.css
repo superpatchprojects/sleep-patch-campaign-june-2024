@@ -247,12 +247,11 @@ body {
     color: #ffffff !important;
 }
 
-
-.owl-carousel .owl-stage { 
+.owl-carousel .owl-stage {
     display: flex;
 }
 
-.card-item {  
+.card-item {
     height: 100%;
 }
 
@@ -282,6 +281,11 @@ body {
 
     .better-sleep-health .light-gray-bg {
         background-color: transparent !important;
+    }
+
+
+    .sleepless-nights-section .owl-carousel .percentage {
+        font-size: 7rem;
     }
 
     .wear-tech-section {
