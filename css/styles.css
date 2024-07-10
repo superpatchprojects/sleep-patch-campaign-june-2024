@@ -166,6 +166,11 @@ body {
     border-radius: 10px;
 }
 
+/* logos section */
+.logos-section img {
+    filter: grayscale(1);
+}
+
 /* sleepless nights section */
 .sleepless-nights-section {
     background-image: url(../images/rem-bg-02.png);
@@ -190,6 +195,10 @@ body {
     border-radius: 10px;
     padding: 20px 10px 0 10px;
     height: 100%;
+}
+
+.how-it-works img {
+    filter: grayscale(1);
 }
 
 /* faq section */
