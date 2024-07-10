@@ -257,6 +257,15 @@ body {
 }
 
 /* media queries */
+
+@media (max-width: 767px) {
+    .video-section {
+        background: url(../images/sleep-deeply-mobile.png) no-repeat center center;
+        background-size: cover;
+        padding: 5rem 0rem;
+    }
+}
+
 @media (max-width: 991px) {
     .banner {
         background: linear-gradient(to bottom, rgb(245 246 252 / 0%), rgb(255 255 255 / 73%)), url(../images/woman-sleeping-01.png) no-repeat center center;
