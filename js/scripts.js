@@ -3,8 +3,7 @@
 		$('.reviews').owlCarousel({
 			loop: true,
 			margin: 10,
-			nav: true,
-			autoHeight: true,
+			nav: false,
 			responsive: {
 				0: {
 					items: 1
@@ -22,7 +21,7 @@
 		$('.advisory-board').owlCarousel({
 			loop: true,
 			margin: 10,
-			nav: true,
+			nav: false,
 			responsive: {
 				0: {
 					items: 1
@@ -40,7 +39,7 @@
 		$('.rem-percentage').owlCarousel({
 			loop: true,
 			margin: 10,
-			nav: true,
+			nav: false,
 			responsive: {
 				0: {
 					items: 1
@@ -57,7 +56,7 @@
 		$('.wear-tech').owlCarousel({
 			loop: true,
 			margin: 10,
-			nav: true,
+			nav: false,
 			responsive: {
 				0: {
 					items: 1
@@ -74,16 +73,19 @@
 		document.getElementById('playButton').addEventListener('click', function() {
 			var container = document.querySelector('.video');
 			var videoHtml = `
-				<div class="col-md-6 offset-md-3">
+				<div class="col-md-8 offset-md-2 mb-4">
 					<div class="ratio ratio-16x9">
 						<iframe src="https://www.youtube.com/embed/d-nrcP5avSs?autoplay=1&rel=0" title="How It Works" allowfullscreen></iframe>
 					</div>
 				</div>
-				
 			`;
 			
 			container.innerHTML = videoHtml;
+		
+			var videoSection = document.querySelector('.video-section');
+			videoSection.style.padding = '0';
 		});
+		
 
 		const plusButton = document.querySelector('.plus-btn');
 		const minusButton = document.querySelector('.minus-btn');
