@@ -2,7 +2,7 @@
 	$(document).ready(function () {
 		$('.reviews').owlCarousel({
 			loop: true,
-			margin: 20,
+			margin: 10,
 			nav: true,
 			autoHeight: true,
 			responsive: {
@@ -21,7 +21,7 @@
 
 		$('.advisory-board').owlCarousel({
 			loop: true,
-			margin: 20,
+			margin: 10,
 			nav: true,
 			responsive: {
 				0: {
