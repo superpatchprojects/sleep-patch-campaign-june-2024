@@ -189,6 +189,11 @@ body {
     border-radius: 10px;
 }
 
+.advisory-board-section img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
 /* wear tech section */
 .wear-tech-section {
     background-image: url(../images/rem-bg.png);
