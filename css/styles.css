@@ -28,10 +28,6 @@ body {
     z-index: 2;
 }
 
-.info-banner .contact-link {
-    color: #FFFFFF;
-}
-
 .banner {
     position: absolute;
     top: 0;
