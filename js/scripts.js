@@ -113,14 +113,16 @@
 
 	addToCartButtons.forEach(button => {
 		button.addEventListener('click', async function () {
-
 			const spinner = this.nextElementSibling;
+			
+			let quantity = parseInt(button.closest(".row").querySelector("input").value);
+
+			if( quantity == 0 ) return;
 
 			setTimeout(() => {
 				spinner.style.display = 'block';
 			}, 100);
 
-			let quantity = parseInt(button.closest(".row").querySelector("input").value);
 			checkout = await shopifyClient.checkout.addLineItems(checkout.id, { variantId, quantity });
 			let new_qty_available = max_qty_available - checkout.lineItems[0].quantity;
 			inputFields.forEach(inp => { inp.max = new_qty_available; inp.value = Math.min(1, new_qty_available); });
@@ -149,7 +151,7 @@
 		updateTotalPrice(max_qty_available - new_qty_available);
 		document.getElementById('cartModalOverlay').style.display = max_qty_available - new_qty_available == 0 ? '' : 'block';
 		this.closest(".row").querySelector('button').dataset.quantity = max_qty_available - new_qty_available;
-		
+
 		spinner.style.display = 'none';
 	});
 
@@ -189,7 +191,7 @@
 
 	inputFields.forEach(qtyfield => {
 		qtyfield.addEventListener("change", function () {
-			updateQuantities(qtyfield.value);
+			updateQuantities(Math.min(qtyfield.max,qtyfield.value));
 		})
 	})
 
