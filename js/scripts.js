@@ -114,10 +114,10 @@
 	addToCartButtons.forEach(button => {
 		button.addEventListener('click', async function () {
 			const spinner = this.nextElementSibling;
-			
+
 			let quantity = parseInt(button.closest(".row").querySelector("input").value);
 
-			if( quantity == 0 ) return;
+			if (quantity == 0) return;
 
 			setTimeout(() => {
 				spinner.style.display = 'block';
@@ -174,10 +174,6 @@
 		});
 	})
 
-	document.querySelector('.close-btn').addEventListener('click', function () {
-		document.getElementById('cartModalOverlay').style.display = 'none';
-	});
-
 	function updateQuantities(value) {
 		inputFields.forEach(input => {
 			input.value = value;
@@ -191,7 +187,7 @@
 
 	inputFields.forEach(qtyfield => {
 		qtyfield.addEventListener("change", function () {
-			updateQuantities(Math.min(qtyfield.max,qtyfield.value));
+			updateQuantities(Math.min(qtyfield.max, qtyfield.value));
 		})
 	})
 
