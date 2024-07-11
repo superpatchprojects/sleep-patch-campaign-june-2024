@@ -224,6 +224,24 @@ body {
     box-shadow: none;
 }
 
+/* cart modal */
+.cart-modal {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    background-color: #fff;
+    color: #000;
+    z-index: 3;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border: 1px solid rgb(0 0 0 / 13%);
+    box-shadow: 0px 2px 10px 4px rgba(0, 0, 0, 0.125);
+}
+
+.close-btn {
+    cursor: pointer;
+}
+
 /* footer section */
 .footer-section .bi {
     color: #828282
@@ -266,7 +284,6 @@ body {
 }
 
 /* media queries */
-
 @media (max-width: 767px) {
     .video-section {
         background: url(../images/sleep-deeply-mobile.png) no-repeat center center;
@@ -284,7 +301,7 @@ body {
     .banner-text {
         padding: 8rem 2rem 4rem 2rem;
     }
-    
+
     .about-rem-section img {
         object-fit: cover;
         width: 100%;
