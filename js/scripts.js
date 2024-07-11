@@ -207,14 +207,4 @@
 			}
 		});
 	});
-
-	sessionStorage.setItem('refreshPage', 'true');
-	
-	window.onload = function() {
-	    var refresh = sessionStorage.getItem('refreshPage');
-	    if (refresh) {
-	        location.reload();
-	        sessionStorage.removeItem('refreshPage');
-	    }
-	}
 })(jQuery, ShopifyBuy);
