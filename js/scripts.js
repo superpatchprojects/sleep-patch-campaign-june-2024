@@ -1,210 +1,349 @@
-(async function ($, ShopifyBuy) {
-	const shopifyClient = ShopifyBuy.buildClient({
-		domain: 'a0c1e3-25.myshopify.com',
-		storefrontAccessToken: '87f20013717bc33265c0ab86ead28dc0'
-	});
+body {
+    font-family: "Poppins", sans-serif;
+}
 
-	const productId = "gid://shopify/Product/" + document.body.dataset.product;
-	const variantId = "gid://shopify/ProductVariant/" + document.body.dataset.variant;
-	const max_qty_available = parseInt(document.body.dataset.maxQuantity);
+/*header section */
+.navbar {
+    opacity: 85%;
+    z-index: 2;
+}
 
-	const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-	const checkoutButtons = document.querySelectorAll('[data-action="checkout"]');
-	const plusButtons = document.querySelectorAll('.plus-btn');
-	const minusButtons = document.querySelectorAll('.minus-btn');
-	const inputFields = document.querySelectorAll('.quantity');
-	const quantitySelect = document.querySelector('.quantity-select');
-	const totalPriceElement = document.getElementById('totalPrice');
-	const pricePerItem = 60.00;
+.navbar-toggler {
+    border: none;
+}
 
-	var checkout = await shopifyClient.checkout.create();
+.navbar-toggler:focus {
+    box-shadow: none;
+}
 
-	$(document).ready(function () {
-		// carousels
-		$('.reviews').owlCarousel({
-			loop: true,
-			margin: 10,
-			nav: false,
-			responsive: {
-				0: {
-					items: 1
-				},
-				600: {
-					items: 2
-				},
-				1000: {
-					items: 3
-				}
-			}
-		});
+.navbar-nav .nav-link {
+    color: #343A40;
+}
 
-		$('.advisory-board').owlCarousel({
-			loop: true,
-			margin: 10,
-			nav: false,
-			responsive: {
-				0: {
-					items: 1
-				},
-				600: {
-					items: 2
-				},
-				1000: {
-					items: 3
-				}
-			}
-		});
+.info-banner {
+    background-color: #313030;
+    color: #fff;
+    padding: 12px;
+    position: relative;
+    z-index: 2;
+}
 
-		$('.rem-percentage').owlCarousel({
-			loop: true,
-			margin: 10,
-			nav: false,
-			responsive: {
-				0: {
-					items: 1
-				},
-				600: {
-					items: 2
-				},
-				1000: {
-					items: 3
-				}
-			}
-		});
+.banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../images/woman-sleeping-01.png) no-repeat center center;
+    background-size: cover;
+    z-index: 1;
+}
 
-		$('.wear-tech').owlCarousel({
-			loop: true,
-			margin: 10,
-			nav: false,
-			responsive: {
-				0: {
-					items: 1
-				},
-				600: {
-					items: 2
-				},
-				1000: {
-					items: 3
-				}
-			}
-		});
-	});
+.banner h1 {
+    line-height: 1;
+}
 
-	// how it works video
-	document.getElementById('playButton').addEventListener('click', function () {
-		var container = document.querySelector('.video');
-		var videoHtml = `
-			<div class="col-md-8 offset-md-2 mb-4">
-				<div class="ratio ratio-16x9">
-					<iframe src="https://www.youtube.com/embed/d-nrcP5avSs?autoplay=1&rel=0" title="How It Works" allowfullscreen></iframe>
-				</div>
-			</div>
-		`;
+.banner-text {
+    position: relative;
+    z-index: 2;
+    padding: 10rem 2rem;
+}
 
-		container.innerHTML = videoHtml;
+/* rem patch section */
+.rem-patch-section .review .write-review {
+    color: #000000;
+}
 
-		var videoSection = document.querySelector('.video-section');
-		videoSection.style.padding = '0';
-	});
+.rem-patch-section .rem-product {
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 8 / 6;
+}
 
+.sleep-deeply {
+    font-weight: 400;
+}
 
-	// add to cart and cart modal
-	inputFields.forEach(inp => inp.max = max_qty_available);
+.price-per-pack .price {
+    font-weight: 500;
+}
 
-	addToCartButtons.forEach(button => {
-		button.addEventListener('click', async function () {
-			const spinner = this.nextElementSibling;
+.quantity-input {
+    border-radius: 6px;
+    border: 1px solid #A7A5A5;
+}
 
-			let quantity = parseInt(button.closest(".row").querySelector("input").value);
+.quantity-btn,
+.quantity-btn:hover,
+.quantity-btn:active {
+    background-color: #D9D9D9 !important;
+    border-radius: 4px !important;
+    border: none;
+}
 
-			if (quantity == 0) return;
+.quantity {
+    text-align: center;
+    border: none;
+    margin: 0 5px;
+}
 
-			setTimeout(() => {
-				spinner.style.display = 'block';
-			}, 100);
+.quantity:focus {
+    box-shadow: none;
+}
 
-			checkout = await shopifyClient.checkout.addLineItems(checkout.id, { variantId, quantity });
-			let new_qty_available = max_qty_available - checkout.lineItems[0].quantity;
-			inputFields.forEach(inp => { inp.max = new_qty_available; inp.value = Math.min(1, new_qty_available); });
-			quantitySelect.value = checkout.lineItems[0].quantity;
-			updateTotalPrice(max_qty_available - new_qty_available);
-			document.getElementById('cartModalOverlay').style.display = max_qty_available - new_qty_available == 0 ? '' : 'block';
-			quantitySelect.closest(".row").querySelector('button').dataset.quantity = max_qty_available - new_qty_available;
+/* about rem section */
+.good-sleep .woman-image {
+    background: url(../images/woman-sleeping-02.png) no-repeat center center;
+    background-size: cover;
+}
 
-			spinner.style.display = 'none';
-		});
-	});
+.choose-rem-patch .mother-daughter-image {
+    background: url(../images/mother-daughter.png) no-repeat center center;
+    background-size: cover;
+}
 
-	quantitySelect.addEventListener('change', async function () {
-		const spinner = this.nextElementSibling;
+.amazing-results .woman-image {
+    background: url(../images/woman-sleeping-03.png) no-repeat center center;
+    background-size: cover;
+}
 
-		setTimeout(() => {
-			spinner.style.display = 'block';
-		}, 100);
+.affordable-effective .family-image {
+    background: url(../images/family.png) no-repeat center center;
+    background-size: cover;
+}
 
-		let id = checkout.lineItems[0].id;
-		let quantity = parseInt(this.value);
+.better-sleep-health .couple-image {
+    background: url(../images/couple.png) no-repeat center center;
+    background-size: cover;
+}
 
-		checkout = await shopifyClient.checkout.updateLineItems(checkout.id, { id, quantity });
-		let new_qty_available = max_qty_available - (checkout.lineItems[0] ? checkout.lineItems[0].quantity : 0);
-		inputFields.forEach(inp => { inp.max = new_qty_available; inp.value = Math.min(1, new_qty_available); });
-		updateTotalPrice(max_qty_available - new_qty_available);
-		document.getElementById('cartModalOverlay').style.display = max_qty_available - new_qty_available == 0 ? '' : 'block';
-		this.closest(".row").querySelector('button').dataset.quantity = max_qty_available - new_qty_available;
+.transforming-sleep .woman-vibrotactile-tech-image {
+    background: url(../images/woman-vibrotactile-tech.png) no-repeat center center;
+    background-size: cover;
+}
 
-		spinner.style.display = 'none';
-	});
+.transform-life .family-image {
+    background: url(../images/family-02.png) no-repeat center center;
+    background-size: cover;
+}
 
-	checkoutButtons.forEach(ckbt => {
-		ckbt.addEventListener('click', async function (e) {
-			e.preventDefault();
-			const spinner = this.nextElementSibling;
+.no-risk .teammates-image {
+    background: url(../images/teammates.png) no-repeat center center;
+    background-size: cover;
+}
 
-			if (this.dataset.quantity != 0) {
-				setTimeout(() => {
-					spinner.style.display = 'block';
-				}, 100);
+.info-text {
+    padding: 8rem 4rem;
+}
 
-				if (!checkout.lineItems[0]) {
-					checkout = await shopifyClient.checkout.addLineItems(checkout.id, { variantId, quantity: parseInt(this.dataset.quantity) });
-				}
-				spinner.style.display = 'none';
-				location = checkout.webUrl;
-			}
-		});
-	})
+/* video section */
+.video-section {
+    background: url(../images/sleep-deeply.png) no-repeat center center;
+    background-size: cover;
+    padding: 10rem 0rem;
+}
 
-	function updateQuantities(value) {
-		inputFields.forEach(input => {
-			input.value = value;
-		});
-	}
+#playButton {
+    cursor: pointer;
+}
 
-	function updateTotalPrice(quantity) {
-		const totalPrice = pricePerItem * quantity;
-		totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
-	}
+/* customers review section */
+.customers-review-section h4 {
+    font-weight: 400;
+}
 
-	inputFields.forEach(qtyfield => {
-		qtyfield.addEventListener("change", function () {
-			updateQuantities(Math.min(qtyfield.max, qtyfield.value));
-		})
-	})
+.customers-review-section h5 {
+    font-weight: 400;
+}
 
-	plusButtons.forEach(button => {
-		button.addEventListener('click', function () {
-			let newValue = parseInt(inputFields[0].value) + 1;
-			updateQuantities(Math.min(newValue, inputFields[0].max));
-		});
-	});
+.customers-review-section .item {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
 
-	minusButtons.forEach(button => {
-		button.addEventListener('click', function () {
-			let currentValue = parseInt(inputFields[0].value);
-			if (currentValue > 1) {
-				let newValue = currentValue - 1;
-				updateQuantities(Math.min(newValue, inputFields[0].max));
-			}
-		});
-	});
-})(jQuery, ShopifyBuy);
+.name-initial {
+    width: 50px;
+    height: 50px;
+    background: #5E3063;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+}
+
+/* logos section */
+.logos-section img {
+    filter: grayscale(1);
+}
+
+/* sleepless nights section */
+.sleepless-nights-section {
+    background-image: url(../images/rem-bg-02.png);
+    background-size: cover;
+    background-position: top center;
+}
+
+/* advisory-board section */
+.advisory-board-section .item {
+    border-radius: 10px;
+}
+
+.advisory-board-section img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* wear tech section */
+.wear-tech-section {
+    background-image: url(../images/rem-bg.png);
+    background-size: cover;
+    background-position: top center;
+}
+
+.how-it-works {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 20px 10px 0 10px;
+    height: 100%;
+}
+
+.how-it-works img {
+    filter: grayscale(1);
+}
+
+/* faq section */
+.faq-section .accordion-item {
+    border: none;
+    margin-bottom: 12px;
+    border-radius: 10px !important;
+}
+
+.accordion-item .accordion-header .accordion-button {
+    border-top-left-radius: var(--bs-accordion-inner-border-radius);
+    border-top-right-radius: var(--bs-accordion-inner-border-radius);
+    border-bottom-left-radius: var(--bs-accordion-inner-border-radius);
+    border-bottom-right-radius: var(--bs-accordion-inner-border-radius);
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #ffffff;
+    box-shadow: none !important;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+/* cart modal */
+.cart-modal {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    background-color: #fff;
+    color: #000;
+    z-index: 3;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border: 1px solid rgb(0 0 0 / 13%);
+    box-shadow: 0px 2px 10px 4px rgba(0, 0, 0, 0.125);
+}
+
+.quantities .quantity-select {
+    cursor: pointer;
+}
+
+/* footer section */
+.footer-section .bi {
+    color: #828282
+}
+
+.footer-section a {
+    color: #000;
+    text-decoration: none;
+}
+
+/* global */
+.stars {
+    color: #FBBC05;
+}
+
+.light-gray-bg {
+    background-color: #F7F7F7;
+}
+
+.btn-red {
+    background-color: #EF0C0C;
+    border-color: #EF0C0C;
+    color: #ffffff;
+    padding: 4px 40px;
+}
+
+.btn-red:hover,
+.btn-red:active {
+    background-color: #CC0000 !important;
+    border-color: #CC0000 !important;
+    color: #ffffff !important;
+}
+
+.owl-carousel .owl-stage {
+    display: flex;
+}
+
+.card-item {
+    height: 100%;
+}
+
+.spinner {
+    display: none;
+    width: 1rem;
+    height: 1rem;
+    color: #555;
+    --bs-spinner-border-width: 2px;
+}
+
+/* media queries */
+@media (max-width: 767px) {
+    .video-section {
+        background: url(../images/sleep-deeply-mobile.png) no-repeat center center;
+        background-size: cover;
+        padding: 5rem 0rem;
+    }
+}
+
+@media (max-width: 991px) {
+    .banner {
+        background: linear-gradient(to bottom, rgb(245 246 252 / 0%), rgb(255 255 255 / 73%)), url(../images/woman-sleeping-01.png) no-repeat center center;
+        background-size: cover;
+    }
+
+    .banner-text {
+        padding: 8rem 2rem 4rem 2rem;
+    }
+
+    .about-rem-section img {
+        object-fit: cover;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1.75;
+        object-position: center;
+        border-radius: 10px;
+    }
+
+    .info-text {
+        padding: 50px 10px;
+    }
+
+    .better-sleep-health .light-gray-bg {
+        background-color: transparent !important;
+    }
+
+    .sleepless-nights-section .owl-carousel .percentage {
+        font-size: 7rem;
+    }
+
+    .wear-tech-section {
+        background-image: none;
+        background-color: #5E3063;
+    }
+}
