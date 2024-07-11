@@ -170,7 +170,6 @@
 				}
 				spinner.style.display = 'none';
 				location = checkout.webUrl;
-				location.reload();
 			}
 		});
 	})
