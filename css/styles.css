@@ -166,6 +166,16 @@ body {
     border-radius: 10px;
 }
 
+.name-initial {
+    width: 50px;
+    height: 50px;
+    background: #5E3063;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+}
+
 /* logos section */
 .logos-section img {
     filter: grayscale(1);
@@ -282,6 +292,14 @@ body {
 
 .card-item {
     height: 100%;
+}
+
+.spinner {
+    display: none;
+    width: 1rem;
+    height: 1rem;
+    color: #555;
+    --bs-spinner-border-width: 2px;
 }
 
 /* media queries */
