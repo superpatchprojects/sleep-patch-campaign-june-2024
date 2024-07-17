@@ -302,6 +302,10 @@ body {
     --bs-spinner-border-width: 2px;
 }
 
+.superpatch-logo {
+    width: 75%;
+}
+
 /* media queries */
 @media (max-width: 767px) {
     .video-section {
