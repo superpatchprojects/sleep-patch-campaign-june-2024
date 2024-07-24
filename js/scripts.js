@@ -131,6 +131,17 @@
 			document.getElementById('cartModalOverlay').style.display = max_qty_available - new_qty_available == 0 ? '' : 'block';
 			quantitySelect.closest(".row").querySelector('button').dataset.quantity = max_qty_available - new_qty_available;
 
+			let event = new CustomEvent("add_to_cart", {
+				"detail": {
+					item_id: checkout.lineItems[0].variant.id.replace(/.*\//g, ""),
+					item_sku: checkout.lineItems[0].variant.sku,
+					item_name: checkout.lineItems[0].title,
+					item_price: parseFloat(checkout.lineItems[0].variant.priceV2.amount),
+					quantity: quantity
+				}
+			});
+			document.dispatchEvent(event);
+
 			spinner.style.display = 'none';
 		});
 	});
