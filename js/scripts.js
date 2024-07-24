@@ -130,16 +130,14 @@
 			updateTotalPrice(max_qty_available - new_qty_available);
 			document.getElementById('cartModalOverlay').style.display = max_qty_available - new_qty_available == 0 ? '' : 'block';
 			quantitySelect.closest(".row").querySelector('button').dataset.quantity = max_qty_available - new_qty_available;
-
-			let event = new CustomEvent("add_to_cart", {
-				"detail": {
-					item_id: checkout.lineItems[0].variant.id.replace(/.*\//g, ""),
-					item_sku: checkout.lineItems[0].variant.sku,
-					item_name: checkout.lineItems[0].title,
-					item_price: parseFloat(checkout.lineItems[0].variant.priceV2.amount),
-					quantity: quantity
-				}
-			});
+			
+			let event = new CustomEvent("add_to_cart", {"detail": {
+				item_id: checkout.lineItems[0].variant.id.replace(/.*\//g,""),
+				item_sku: checkout.lineItems[0].variant.sku,
+				item_name: checkout.lineItems[0].title,
+				item_price: parseFloat(checkout.lineItems[0].variant.priceV2.amount),
+				quantity: quantity
+			}});
 			document.dispatchEvent(event);
 
 			spinner.style.display = 'none';
@@ -162,26 +160,42 @@
 		updateTotalPrice(max_qty_available - new_qty_available);
 		document.getElementById('cartModalOverlay').style.display = max_qty_available - new_qty_available == 0 ? '' : 'block';
 		this.closest(".row").querySelector('button').dataset.quantity = max_qty_available - new_qty_available;
+		
+		let event = new CustomEvent("add_to_cart", {"detail": {
+			item_id: checkout.lineItems[0].variant.id.replace(/.*\//g,""),
+			item_sku: checkout.lineItems[0].variant.sku,
+			item_name: checkout.lineItems[0].title,
+			item_price: parseFloat(checkout.lineItems[0].variant.priceV2.amount),
+			quantity: quantity
+		}});
+		document.dispatchEvent(event);
 
 		spinner.style.display = 'none';
 	});
 
 	checkoutButtons.forEach(ckbt => {
 		ckbt.addEventListener('click', async function (e) {
+			var this_checkout = checkout;
 			e.preventDefault();
 			const spinner = this.nextElementSibling;
 
-			if (this.dataset.quantity != 0) {
-				setTimeout(() => {
-					spinner.style.display = 'block';
-				}, 100);
+			setTimeout(() => {
+				spinner.style.display = 'block';
+			}, 100);
 
-				if (!checkout.lineItems[0]) {
-					checkout = await shopifyClient.checkout.addLineItems(checkout.id, { variantId, quantity: parseInt(this.dataset.quantity) });
-				}
-				spinner.style.display = 'none';
-				location = checkout.webUrl;
+			if (!(this_checkout.lineItems[0] && this_checkout.lineItems[0].variant)) {
+				this_checkout = await shopifyClient.checkout.create()
+					.then(temp_checkout => shopifyClient.checkout.addLineItems(temp_checkout.id, { variantId, quantity: parseInt(this.dataset.quantity) }));
+				
 			}
+			spinner.style.display = 'none';
+			let event = new CustomEvent("init_checkout", {"detail": {
+				quantity: this_checkout.lineItems.reduce((a,l) => a += l.quantity,0),
+				value: parseFloat(this_checkout.paymentDueV2.amount)
+			}});
+			document.dispatchEvent(event);
+			await new Promise(r => setTimeout(r,1000));
+			console.log();
 		});
 	})
 
