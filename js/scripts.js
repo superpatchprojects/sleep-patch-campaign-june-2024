@@ -1,12 +1,5 @@
 // Opens up modal on hash		
-if (window.location.hash) {
-	var modalId = window.location.hash.substring(1);
-	var modalElement = document.getElementById(modalId);
-	if (modalElement) {
-		var modal = new bootstrap.Modal(modalElement);
-		modal.show();
-	}
-}
+
 
 (async function ($, ShopifyBuy) {
 	const shopifyClient = ShopifyBuy.buildClient({
@@ -26,6 +19,15 @@ if (window.location.hash) {
 	const quantitySelect = document.querySelector('.quantity-select');
 	const totalPriceElement = document.getElementById('totalPrice');
 	const pricePerItem = 60.00;
+
+	if (window.location.hash) {
+		var modalId = window.location.hash.substring(1);
+		var modalElement = document.getElementById(modalId);
+		if (modalElement) {
+			var modal = new bootstrap.Modal(modalElement);
+			modal.show();
+		}
+	}
 
 	var checkout = await shopifyClient.checkout.create();
 
