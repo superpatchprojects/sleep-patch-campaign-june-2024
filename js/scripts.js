@@ -2,7 +2,6 @@
 if (window.location.hash) {
 	var modalId = window.location.hash.substring(1);
 	var modalElement = document.getElementById(modalId);
-	
 	if (modalElement) {
 		var modal = new bootstrap.Modal(modalElement);
 		modal.show();
