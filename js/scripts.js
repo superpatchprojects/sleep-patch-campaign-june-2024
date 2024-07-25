@@ -1,6 +1,16 @@
+// Opens up modal on hash		
+if (window.location.hash) {
+	var modalId = window.location.hash.substring(1);
+	var modalElement = document.getElementById(modalId);
+	if (modalElement) {
+		var modal = new bootstrap.Modal(modalElement);
+		modal.show();
+	}
+}
+
 (async function ($, ShopifyBuy) {
 	const shopifyClient = ShopifyBuy.buildClient({
-		domain: 'a0c1e3-25.myshopify.com',
+		domain: 'checkout.supersleep.com',
 		storefrontAccessToken: '87f20013717bc33265c0ab86ead28dc0'
 	});
 
@@ -130,14 +140,16 @@
 			updateTotalPrice(max_qty_available - new_qty_available);
 			document.getElementById('cartModalOverlay').style.display = max_qty_available - new_qty_available == 0 ? '' : 'block';
 			quantitySelect.closest(".row").querySelector('button').dataset.quantity = max_qty_available - new_qty_available;
-			
-			let event = new CustomEvent("add_to_cart", {"detail": {
-				item_id: checkout.lineItems[0].variant.id.replace(/.*\//g,""),
-				item_sku: checkout.lineItems[0].variant.sku,
-				item_name: checkout.lineItems[0].title,
-				item_price: parseFloat(checkout.lineItems[0].variant.priceV2.amount),
-				quantity: quantity
-			}});
+
+			let event = new CustomEvent("add_to_cart", {
+				"detail": {
+					item_id: checkout.lineItems[0].variant.id.replace(/.*\//g, ""),
+					item_sku: checkout.lineItems[0].variant.sku,
+					item_name: checkout.lineItems[0].title,
+					item_price: parseFloat(checkout.lineItems[0].variant.priceV2.amount),
+					quantity: quantity
+				}
+			});
 			document.dispatchEvent(event);
 
 			spinner.style.display = 'none';
@@ -160,14 +172,16 @@
 		updateTotalPrice(max_qty_available - new_qty_available);
 		document.getElementById('cartModalOverlay').style.display = max_qty_available - new_qty_available == 0 ? '' : 'block';
 		this.closest(".row").querySelector('button').dataset.quantity = max_qty_available - new_qty_available;
-		
-		let event = new CustomEvent("add_to_cart", {"detail": {
-			item_id: checkout.lineItems[0].variant.id.replace(/.*\//g,""),
-			item_sku: checkout.lineItems[0].variant.sku,
-			item_name: checkout.lineItems[0].title,
-			item_price: parseFloat(checkout.lineItems[0].variant.priceV2.amount),
-			quantity: quantity
-		}});
+
+		let event = new CustomEvent("add_to_cart", {
+			"detail": {
+				item_id: checkout.lineItems[0].variant.id.replace(/.*\//g, ""),
+				item_sku: checkout.lineItems[0].variant.sku,
+				item_name: checkout.lineItems[0].title,
+				item_price: parseFloat(checkout.lineItems[0].variant.priceV2.amount),
+				quantity: quantity
+			}
+		});
 		document.dispatchEvent(event);
 
 		spinner.style.display = 'none';
@@ -186,16 +200,25 @@
 			if (!(this_checkout.lineItems[0] && this_checkout.lineItems[0].variant)) {
 				this_checkout = await shopifyClient.checkout.create()
 					.then(temp_checkout => shopifyClient.checkout.addLineItems(temp_checkout.id, { variantId, quantity: parseInt(this.dataset.quantity) }));
-				
+
 			}
 			spinner.style.display = 'none';
-			let event = new CustomEvent("init_checkout", {"detail": {
-				quantity: this_checkout.lineItems.reduce((a,l) => a += l.quantity,0),
-				value: parseFloat(this_checkout.paymentDueV2.amount)
-			}});
+			let event = new CustomEvent("init_checkout", {
+				"detail": {
+					quantity: this_checkout.lineItems.reduce((a, l) => a += l.quantity, 0),
+					value: parseFloat(this_checkout.paymentDueV2.amount),
+					items: this_checkout.lineItems.map(item => ({
+						item_id: item.variant.id.replace(/.*\//g, ""),
+						item_sku: item.variant.sku,
+						item_name: item.title,
+						item_price: parseFloat(item.variant.priceV2.amount),
+						quantity: parseInt(item.quantity),
+					}))
+				}
+			});
 			document.dispatchEvent(event);
-			await new Promise(r => setTimeout(r,1000));
-			console.log();
+			await new Promise(r => setTimeout(r, 1000));
+			location = this_checkout.webUrl;
 		});
 	})
 
@@ -220,7 +243,7 @@
 		button.addEventListener('click', function () {
 			let newValue = parseInt(inputFields[0].value) + 1;
 			updateQuantities(Math.min(newValue, inputFields[0].max));
-		});
+		}); 
 	});
 
 	minusButtons.forEach(button => {
