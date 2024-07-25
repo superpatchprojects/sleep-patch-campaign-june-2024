@@ -1,12 +1,14 @@
 // Opens up modal on hash		
-if (window.location.hash) {
-	var modalId = window.location.hash.substring(1);
-	var modalElement = document.getElementById(modalId);
-	if (modalElement) {
-		var modal = new bootstrap.Modal(modalElement);
-		modal.show();
-	}
-}
+document.addEventListener('DOMContentLoaded', function() {
+    if (window.location.hash) {
+        var modalId = window.location.hash.substring(1);
+        var modalElement = document.getElementById(modalId);
+        if (modalElement) {
+            var modal = new bootstrap.Modal(modalElement);
+            modal.show();
+        }
+    }
+});
 
 (async function ($, ShopifyBuy) {
 	const shopifyClient = ShopifyBuy.buildClient({
