@@ -1,14 +1,10 @@
 // Opens up modal on hash		
 if (window.location.hash) {
 	var modalId = window.location.hash.substring(1);
-	console.log(111, modalId)
 	var modalElement = document.getElementById(modalId);
-	console.log(222, modalElement)
 	
 	if (modalElement) {
 		var modal = new bootstrap.Modal(modalElement);
-		console.log(333, modal)
-		
 		modal.show();
 	}
 }
