@@ -302,6 +302,10 @@ body {
     --bs-spinner-border-width: 2px;
 }
 
+.spinner-white {
+    color: #fff;
+}
+
 .superpatch-logo {
     width: 75%;
 }
@@ -312,6 +316,10 @@ body {
         background: url(../images/sleep-deeply-mobile.png) no-repeat center center;
         background-size: cover;
         padding: 5rem 0rem;
+    }
+
+    .info-banner {
+        background-color: rgba(48, 48, 48, .4);
     }
 }
 
