@@ -303,7 +303,7 @@ body {
 }
 
 .spinner-white {
-    color: #fff;
+    color: #fff !important;
 }
 
 .superpatch-logo {
