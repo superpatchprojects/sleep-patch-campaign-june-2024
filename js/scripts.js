@@ -9,6 +9,16 @@ if (window.location.hash) {
 }
 
 (async function ($, ShopifyBuy) {
+
+	// save utm parameters to local storage
+	const params = new URLSearchParams(location.search);
+	params.entries().forEach(([k,v]) => sessionStorage.setItem(k,v));
+	
+	const customAttributes = ["Campaign","Source","Medium","Content","Term"].map( p => {
+		return {"key": p, "value": sessionStorage.getItem("utm_"+p.toLowerCase())}
+	}).filter( p => p.value );
+	
+	
 	const shopifyClient = ShopifyBuy.buildClient({
 		domain: 'checkout.supersleep.com',
 		storefrontAccessToken: '87f20013717bc33265c0ab86ead28dc0'
@@ -28,7 +38,9 @@ if (window.location.hash) {
 	const pricePerItem = 60.00;
 
 	var checkout = await shopifyClient.checkout.create();
-
+	
+	checkout = await shopifyClient.checkout.updateAttributes(checkout.id, { customAttributes });
+	
 	$(document).ready(function () {
 		// carousels
 		$('.reviews').owlCarousel({
@@ -199,6 +211,7 @@ if (window.location.hash) {
 
 			if (!(this_checkout.lineItems[0] && this_checkout.lineItems[0].variant)) {
 				this_checkout = await shopifyClient.checkout.create()
+					.then(temp_checkout => shopifyClient.checkout.updateAttributes(temp_checkout.id, { customAttributes }))
 					.then(temp_checkout => shopifyClient.checkout.addLineItems(temp_checkout.id, { variantId, quantity: parseInt(this.dataset.quantity) }));
 
 			}
