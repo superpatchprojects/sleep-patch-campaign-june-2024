@@ -34,7 +34,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url(../images/woman-sleeping-01.png) no-repeat center center;
+    background: url(../images/rem-header.png) no-repeat center center;
     background-size: cover;
     z-index: 1;
 }
@@ -94,7 +94,7 @@ body {
 
 /* about rem section */
 .good-sleep .woman-image {
-    background: url(../images/woman-sleeping-02.png) no-repeat center center;
+    background: url(../images/why-good-sleep-is-essential.png) no-repeat center center;
     background-size: cover;
 }
 
@@ -104,7 +104,7 @@ body {
 }
 
 .amazing-results .woman-image {
-    background: url(../images/woman-sleeping-03.png) no-repeat center center;
+    background: url(../images/amazing-results-with-rem-super-patch.png) no-repeat center center;
     background-size: cover;
 }
 
@@ -325,7 +325,7 @@ body {
 
 @media (max-width: 991px) {
     .banner {
-        background: linear-gradient(to bottom, rgb(245 246 252 / 0%), rgb(255 255 255 / 73%)), url(../images/woman-sleeping-01.png) no-repeat center center;
+        background: linear-gradient(to bottom, rgb(245 246 252 / 0%), rgb(255 255 255 / 73%)), url(../images/rem-header.png) no-repeat center center;
         background-size: cover;
     }
 
