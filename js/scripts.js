@@ -11,31 +11,31 @@ if (window.location.hash) {
 (async function ($, ShopifyBuy) {
 
 	// save utm parameters to local storage
-	var params = new URLSearchParams(location.search);
+	const params = new URLSearchParams(location.search);
 	params.entries().forEach(([k,v]) => sessionStorage.setItem(k,v));
 	
-	var customAttributes = ["Campaign","Source","Medium","Content","Term"].map( p => {
+	const customAttributes = ["Campaign","Source","Medium","Content","Term"].map( p => {
 		return {"key": p, "value": sessionStorage.getItem("utm_"+p.toLowerCase())}
 	}).filter( p => p.value );
 	
 	
-	var shopifyClient = ShopifyBuy.buildClient({
+	const shopifyClient = ShopifyBuy.buildClient({
 		domain: 'checkout.supersleep.com',
 		storefrontAccessToken: '87f20013717bc33265c0ab86ead28dc0'
 	});
 
-	var productId = "gid://shopify/Product/" + document.body.dataset.product;
-	var variantId = "gid://shopify/ProductVariant/" + document.body.dataset.variant;
-	var max_qty_available = parseInt(document.body.dataset.maxQuantity);
+	const productId = "gid://shopify/Product/" + document.body.dataset.product;
+	const variantId = "gid://shopify/ProductVariant/" + document.body.dataset.variant;
+	const max_qty_available = parseInt(document.body.dataset.maxQuantity);
 
-	var addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-	var checkoutButtons = document.querySelectorAll('[data-action="checkout"]');
-	var plusButtons = document.querySelectorAll('.plus-btn');
-	var minusButtons = document.querySelectorAll('.minus-btn');
-	var inputFields = document.querySelectorAll('.quantity');
-	var quantitySelect = document.querySelector('.quantity-select');
-	var totalPriceElement = document.getElementById('totalPrice');
-	var pricePerItem = 60.00;
+	const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+	const checkoutButtons = document.querySelectorAll('[data-action="checkout"]');
+	const plusButtons = document.querySelectorAll('.plus-btn');
+	const minusButtons = document.querySelectorAll('.minus-btn');
+	const inputFields = document.querySelectorAll('.quantity');
+	const quantitySelect = document.querySelector('.quantity-select');
+	const totalPriceElement = document.getElementById('totalPrice');
+	const pricePerItem = 60.00;
 
 	var checkout = await shopifyClient.checkout.create();
 	
@@ -135,9 +135,9 @@ if (window.location.hash) {
 
 	addToCartButtons.forEach(button => {
 		button.addEventListener('click', async function () {
-			var spinner = this.nextElementSibling;
+			const spinner = this.nextElementSibling;
 
-			var quantity = parseInt(button.closest(".row").querySelector("input").value);
+			let quantity = parseInt(button.closest(".row").querySelector("input").value);
 
 			if (quantity == 0) return;
 
@@ -146,14 +146,14 @@ if (window.location.hash) {
 			}, 100);
 
 			checkout = await shopifyClient.checkout.addLineItems(checkout.id, { variantId, quantity });
-			var new_qty_available = max_qty_available - checkout.lineItems[0].quantity;
+			let new_qty_available = max_qty_available - checkout.lineItems[0].quantity;
 			inputFields.forEach(inp => { inp.max = new_qty_available; inp.value = Math.min(1, new_qty_available); });
 			quantitySelect.value = checkout.lineItems[0].quantity;
 			updateTotalPrice(max_qty_available - new_qty_available);
 			document.getElementById('cartModalOverlay').style.display = max_qty_available - new_qty_available == 0 ? '' : 'block';
 			quantitySelect.closest(".row").querySelector('button').dataset.quantity = max_qty_available - new_qty_available;
 
-			var event = new CustomEvent("add_to_cart", {
+			let event = new CustomEvent("add_to_cart", {
 				"detail": {
 					item_id: checkout.lineItems[0].variant.id.replace(/.*\//g, ""),
 					item_sku: checkout.lineItems[0].variant.sku,
@@ -169,23 +169,23 @@ if (window.location.hash) {
 	});
 
 	quantitySelect.addEventListener('change', async function () {
-		var spinner = this.nextElementSibling;
+		const spinner = this.nextElementSibling;
 
 		setTimeout(() => {
 			spinner.style.display = 'block';
 		}, 100);
 
-		var id = checkout.lineItems[0].id;
-		var quantity = parseInt(this.value);
+		let id = checkout.lineItems[0].id;
+		let quantity = parseInt(this.value);
 
 		checkout = await shopifyClient.checkout.updateLineItems(checkout.id, { id, quantity });
-		var new_qty_available = max_qty_available - (checkout.lineItems[0] ? checkout.lineItems[0].quantity : 0);
+		let new_qty_available = max_qty_available - (checkout.lineItems[0] ? checkout.lineItems[0].quantity : 0);
 		inputFields.forEach(inp => { inp.max = new_qty_available; inp.value = Math.min(1, new_qty_available); });
 		updateTotalPrice(max_qty_available - new_qty_available);
 		document.getElementById('cartModalOverlay').style.display = max_qty_available - new_qty_available == 0 ? '' : 'block';
 		this.closest(".row").querySelector('button').dataset.quantity = max_qty_available - new_qty_available;
 
-		var event = new CustomEvent("add_to_cart", {
+		let event = new CustomEvent("add_to_cart", {
 			"detail": {
 				item_id: checkout.lineItems[0].variant.id.replace(/.*\//g, ""),
 				item_sku: checkout.lineItems[0].variant.sku,
@@ -203,7 +203,7 @@ if (window.location.hash) {
 		ckbt.addEventListener('click', async function (e) {
 			var this_checkout = checkout;
 			e.preventDefault();
-			var spinner = this.nextElementSibling;
+			const spinner = this.nextElementSibling;
 
 			setTimeout(() => {
 				spinner.style.display = 'block';
@@ -216,7 +216,7 @@ if (window.location.hash) {
 
 			}
 			spinner.style.display = 'none';
-			var event = new CustomEvent("init_checkout", {
+			let event = new CustomEvent("init_checkout", {
 				"detail": {
 					quantity: this_checkout.lineItems.reduce((a, l) => a += l.quantity, 0),
 					value: parseFloat(this_checkout.paymentDueV2.amount),
@@ -242,7 +242,7 @@ if (window.location.hash) {
 	}
 
 	function updateTotalPrice(quantity) {
-		var totalPrice = pricePerItem * quantity;
+		const totalPrice = pricePerItem * quantity;
 		totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
 	}
 
@@ -254,16 +254,16 @@ if (window.location.hash) {
 
 	plusButtons.forEach(button => {
 		button.addEventListener('click', function () {
-			var newValue = parseInt(inputFields[0].value) + 1;
+			let newValue = parseInt(inputFields[0].value) + 1;
 			updateQuantities(Math.min(newValue, inputFields[0].max));
 		}); 
 	});
 
 	minusButtons.forEach(button => {
 		button.addEventListener('click', function () {
-			var currentValue = parseInt(inputFields[0].value);
+			let currentValue = parseInt(inputFields[0].value);
 			if (currentValue > 1) {
-				var newValue = currentValue - 1;
+				let newValue = currentValue - 1;
 				updateQuantities(Math.min(newValue, inputFields[0].max));
 			}
 		});
