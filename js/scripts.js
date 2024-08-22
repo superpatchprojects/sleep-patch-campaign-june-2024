@@ -12,13 +12,13 @@ if (window.location.hash) {
 
 	// save utm parameters to local storage
 	const params = new URLSearchParams(location.search);
-	params.entries().forEach(([k, v]) => sessionStorage.setItem(k, v));
-
-	const customAttributes = ["Campaign", "Source", "Medium", "Content", "Term"].map(p => {
-		return { "key": p, "value": sessionStorage.getItem("utm_" + p.toLowerCase()) }
-	}).filter(p => p.value);
-
-
+	params.entries().forEach(([k,v]) => sessionStorage.setItem(k,v));
+	
+	const customAttributes = ["Campaign","Source","Medium","Content","Term"].map( p => {
+		return {"key": p, "value": sessionStorage.getItem("utm_"+p.toLowerCase())}
+	}).filter( p => p.value );
+	
+	
 	const shopifyClient = ShopifyBuy.buildClient({
 		domain: 'checkout.supersleep.com',
 		storefrontAccessToken: '87f20013717bc33265c0ab86ead28dc0'
@@ -38,9 +38,9 @@ if (window.location.hash) {
 	const pricePerItem = 60.00;
 
 	var checkout = await shopifyClient.checkout.create();
-
+	
 	checkout = await shopifyClient.checkout.updateAttributes(checkout.id, { customAttributes });
-
+	
 	$(document).ready(function () {
 		// carousels
 		$('.reviews').owlCarousel({
@@ -135,48 +135,38 @@ if (window.location.hash) {
 
 	addToCartButtons.forEach(button => {
 		button.addEventListener('click', async function () {
-			await handleAddToCart(button);
-		});
+			const spinner = this.nextElementSibling;
 
-		button.addEventListener('touchstart', async function () {
-			await handleAddToCart(button);
+			let quantity = parseInt(button.closest(".row").querySelector("input").value);
+
+			if (quantity == 0) return;
+
+			setTimeout(() => {
+				spinner.style.display = 'block';
+			}, 100);
+
+			checkout = await shopifyClient.checkout.addLineItems(checkout.id, { variantId, quantity });
+			let new_qty_available = max_qty_available - checkout.lineItems[0].quantity;
+			inputFields.forEach(inp => { inp.max = new_qty_available; inp.value = Math.min(1, new_qty_available); });
+			quantitySelect.value = checkout.lineItems[0].quantity;
+			updateTotalPrice(max_qty_available - new_qty_available);
+			document.getElementById('cartModalOverlay').style.display = max_qty_available - new_qty_available == 0 ? '' : 'block';
+			quantitySelect.closest(".row").querySelector('button').dataset.quantity = max_qty_available - new_qty_available;
+
+			let event = new CustomEvent("add_to_cart", {
+				"detail": {
+					item_id: checkout.lineItems[0].variant.id.replace(/.*\//g, ""),
+					item_sku: checkout.lineItems[0].variant.sku,
+					item_name: checkout.lineItems[0].title,
+					item_price: parseFloat(checkout.lineItems[0].variant.priceV2.amount),
+					quantity: quantity
+				}
+			});
+			document.dispatchEvent(event);
+
+			spinner.style.display = 'none';
 		});
 	});
-
-	async function handleAddToCart(button) {
-		const spinner = button.nextElementSibling;
-
-		let quantity = parseInt(button.closest(".row").querySelector("input").value);
-
-		if (quantity == 0) return;
-
-		setTimeout(() => {
-			spinner.style.display = 'block';
-		}, 100);
-
-		checkout = await shopifyClient.checkout.addLineItems(checkout.id, { variantId, quantity });
-
-		let new_qty_available = max_qty_available - checkout.lineItems[0].quantity;
-		inputFields.forEach(inp => { inp.max = new_qty_available; inp.value = Math.min(1, new_qty_available); });
-		quantitySelect.value = checkout.lineItems[0].quantity;
-		updateTotalPrice(max_qty_available - new_qty_available);
-		document.getElementById('cartModalOverlay').style.display = max_qty_available - new_qty_available == 0 ? '' : 'block';
-		quantitySelect.closest(".row").querySelector('button').dataset.quantity = max_qty_available - new_qty_available;
-
-		let event = new CustomEvent("add_to_cart", {
-			"detail": {
-				item_id: checkout.lineItems[0].variant.id.replace(/.*\//g, ""),
-				item_sku: checkout.lineItems[0].variant.sku,
-				item_name: checkout.lineItems[0].title,
-				item_price: parseFloat(checkout.lineItems[0].variant.priceV2.amount),
-				quantity: quantity
-			}
-		});
-		document.dispatchEvent(event);
-
-		spinner.style.display = 'none';
-	}
-
 
 	quantitySelect.addEventListener('change', async function () {
 		const spinner = this.nextElementSibling;
@@ -266,7 +256,7 @@ if (window.location.hash) {
 		button.addEventListener('click', function () {
 			let newValue = parseInt(inputFields[0].value) + 1;
 			updateQuantities(Math.min(newValue, inputFields[0].max));
-		});
+		}); 
 	});
 
 	minusButtons.forEach(button => {
