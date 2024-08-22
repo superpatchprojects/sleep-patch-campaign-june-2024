@@ -8,77 +8,6 @@ if (window.location.hash) {
 	}
 }
 
-$(document).ready(function () {
-	// carousels
-	$('.reviews').owlCarousel({
-		loop: true,
-		margin: 10,
-		nav: false,
-		responsive: {
-			0: {
-				items: 1
-			},
-			600: {
-				items: 2
-			},
-			1000: {
-				items: 3
-			}
-		}
-	});
-
-	$('.advisory-board').owlCarousel({
-		loop: true,
-		margin: 10,
-		nav: false,
-		responsive: {
-			0: {
-				items: 1
-			},
-			600: {
-				items: 2
-			},
-			1000: {
-				items: 3
-			}
-		}
-	});
-
-	$('.rem-percentage').owlCarousel({
-		loop: true,
-		margin: 10,
-		nav: false,
-		responsive: {
-			0: {
-				items: 1
-			},
-			600: {
-				items: 2
-			},
-			1000: {
-				items: 3
-			}
-		}
-	});
-
-	$('.wear-tech').owlCarousel({
-		loop: true,
-		margin: 10,
-		nav: false,
-		responsive: {
-			0: {
-				items: 1
-			},
-			600: {
-				items: 2
-			},
-			1000: {
-				items: 3
-			}
-		}
-	});
-});
-
 (async function ($, ShopifyBuy) {
 
 	// save utm parameters to local storage
@@ -111,7 +40,77 @@ $(document).ready(function () {
 	var checkout = await shopifyClient.checkout.create();
 	
 	checkout = await shopifyClient.checkout.updateAttributes(checkout.id, { customAttributes });
+	
+	$(document).ready(function () {
+		// carousels
+		$('.reviews').owlCarousel({
+			loop: true,
+			margin: 10,
+			nav: false,
+			responsive: {
+				0: {
+					items: 1
+				},
+				600: {
+					items: 2
+				},
+				1000: {
+					items: 3
+				}
+			}
+		});
 
+		$('.advisory-board').owlCarousel({
+			loop: true,
+			margin: 10,
+			nav: false,
+			responsive: {
+				0: {
+					items: 1
+				},
+				600: {
+					items: 2
+				},
+				1000: {
+					items: 3
+				}
+			}
+		});
+
+		$('.rem-percentage').owlCarousel({
+			loop: true,
+			margin: 10,
+			nav: false,
+			responsive: {
+				0: {
+					items: 1
+				},
+				600: {
+					items: 2
+				},
+				1000: {
+					items: 3
+				}
+			}
+		});
+
+		$('.wear-tech').owlCarousel({
+			loop: true,
+			margin: 10,
+			nav: false,
+			responsive: {
+				0: {
+					items: 1
+				},
+				600: {
+					items: 2
+				},
+				1000: {
+					items: 3
+				}
+			}
+		});
+	});
 
 	// how it works video
 	document.getElementById('playButton').addEventListener('click', function () {
