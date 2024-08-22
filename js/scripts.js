@@ -8,6 +8,23 @@ if (window.location.hash) {
 	}
 }
 
+// how it works video
+document.getElementById('playButton').addEventListener('click', function () {
+	var container = document.querySelector('.video');
+	var videoHtml = `
+		<div class="col-md-8 offset-md-2 mb-4">
+			<div class="ratio ratio-16x9">
+				<iframe src="https://www.youtube.com/embed/d-nrcP5avSs?autoplay=1&rel=0" title="How It Works" allowfullscreen></iframe>
+			</div>
+		</div>
+	`;
+
+	container.innerHTML = videoHtml;
+
+	var videoSection = document.querySelector('.video-section');
+	videoSection.style.padding = '0';
+});
+
 (async function ($, ShopifyBuy) {
 
 	// save utm parameters to local storage
@@ -112,22 +129,7 @@ if (window.location.hash) {
 		});
 	});
 
-	// how it works video
-	document.getElementById('playButton').addEventListener('click', function () {
-		var container = document.querySelector('.video');
-		var videoHtml = `
-			<div class="col-md-8 offset-md-2 mb-4">
-				<div class="ratio ratio-16x9">
-					<iframe src="https://www.youtube.com/embed/d-nrcP5avSs?autoplay=1&rel=0" title="How It Works" allowfullscreen></iframe>
-				</div>
-			</div>
-		`;
-
-		container.innerHTML = videoHtml;
-
-		var videoSection = document.querySelector('.video-section');
-		videoSection.style.padding = '0';
-	});
+	
 
 
 	// add to cart and cart modal
