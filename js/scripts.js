@@ -85,17 +85,12 @@ jQuery(document).ready(function () {
 	});
 });
 
-async function init($, ShopifyBuy){
-	if(!!$) alert("jQuery Works");
-	if(!!ShopifyBuy) alert("Shopify Works");
-}
-
-init(jQuery,ShopifyBuy);
-
-(async function () {
+(function ($, ShopifyBuy) {
 
 	if (!ShopifyBuy) {
 		return alert("Validating");
+	} else {
+		return alert("Shopify Works");
 	}
 
 	// save utm parameters to local storage
@@ -286,4 +281,4 @@ init(jQuery,ShopifyBuy);
 			}
 		});
 	});
-})();
+})(jQuery,ShopifyBuy);
