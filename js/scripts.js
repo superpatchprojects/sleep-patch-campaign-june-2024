@@ -93,5 +93,8 @@ jQuery(document).ready(function () {
 		alert("Shopify Works");
 	}
 	
+	const params = new URLSearchParams(location.search);
+	params.entries().forEach(([k,v]) => sessionStorage.setItem(k,v));
+	
 	alert("step2");
 })(jQuery,ShopifyBuy);
