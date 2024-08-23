@@ -157,10 +157,6 @@ body {
     padding: 10rem 0rem;
 }
 
-#version-2 .video-section {
-    padding: 20rem 0rem;
-}
-
 #playButton {
     cursor: pointer;
 }
@@ -393,5 +389,9 @@ body {
 @media (min-width: 1400px) {
     #version-2 .wear-tech-section {
         padding: 15rem 10rem !important;
+    }
+
+    #version-2 .video-section {
+        padding: 20rem 0rem;
     }
 }
