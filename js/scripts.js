@@ -67,7 +67,7 @@ if (window.location.hash) {
 		}
 	});
 
-	$('.wear-tech').owlCarousel({
+	$('#version-1 .wear-tech').owlCarousel({
 		loop: true,
 		margin: 10,
 		nav: false,
