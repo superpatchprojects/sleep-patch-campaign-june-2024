@@ -150,7 +150,7 @@ if (window.location.hash) {
 				spinner.style.display = 'block';
 			}, 100);
 
-			checkout = await shopifyClient.checkout.addLineItems(checkout.id, { variantId, quantity });
+			// checkout = await shopifyClient.checkout.addLineItems(checkout.id, { variantId, quantity });
 			let new_qty_available = max_qty_available - checkout.lineItems[0].quantity;
 			inputFields.forEach(inp => { inp.max = new_qty_available; inp.value = Math.min(1, new_qty_available); });
 			quantitySelect.value = checkout.lineItems[0].quantity;
@@ -183,7 +183,7 @@ if (window.location.hash) {
 		let id = checkout.lineItems[0].id;
 		let quantity = parseInt(this.value);
 
-		checkout = await shopifyClient.checkout.updateLineItems(checkout.id, { id, quantity });
+		// checkout = await shopifyClient.checkout.updateLineItems(checkout.id, { id, quantity });
 		let new_qty_available = max_qty_available - (checkout.lineItems[0] ? checkout.lineItems[0].quantity : 0);
 		inputFields.forEach(inp => { inp.max = new_qty_available; inp.value = Math.min(1, new_qty_available); });
 		updateTotalPrice(max_qty_available - new_qty_available);
@@ -215,9 +215,9 @@ if (window.location.hash) {
 			}, 100);
 
 			if (!(this_checkout.lineItems[0] && this_checkout.lineItems[0].variant)) {
-				this_checkout = await shopifyClient.checkout.create()
-					.then(temp_checkout => shopifyClient.checkout.updateAttributes(temp_checkout.id, { customAttributes }))
-					.then(temp_checkout => shopifyClient.checkout.addLineItems(temp_checkout.id, { variantId, quantity: parseInt(this.dataset.quantity) }));
+				// this_checkout = await shopifyClient.checkout.create()
+				// 	.then(temp_checkout => shopifyClient.checkout.updateAttributes(temp_checkout.id, { customAttributes }))
+				// 	.then(temp_checkout => shopifyClient.checkout.addLineItems(temp_checkout.id, { variantId, quantity: parseInt(this.dataset.quantity) }));
 
 			}
 			spinner.style.display = 'none';
