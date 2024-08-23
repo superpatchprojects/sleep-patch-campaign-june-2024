@@ -88,4 +88,6 @@ jQuery(document).ready(function () {
 (function ($, ShopifyBuy) {
 	const params = new URLSearchParams(location.search);
 	alert("Params found:" + params.size);
+	sessionStorage.setItem("hello","hello");
+	alert(sessionStorage.getItem("hello");
 })(jQuery,ShopifyBuy);
