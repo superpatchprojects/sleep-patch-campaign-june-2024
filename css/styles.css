@@ -50,7 +50,7 @@ body {
 }
 
 #version-2 .banner-text {
-    padding: 20rem 2rem;
+    padding: 15rem 0rem;
 }
 
 .header .superpatch-logo {
@@ -344,7 +344,6 @@ body {
         background: url(../images/rem-hero-banner-mobile-version-2.jpg) no-repeat center center;
         background-size: cover;
     }
-
     #version-2 .info-banner p {
         font-size: 95%;
     }
@@ -353,6 +352,11 @@ body {
 @media (max-width: 992px) {
     .banner-text {
         padding: 8rem 2rem 4rem 2rem !important;
+    }
+
+    #version-2 .banner-text {
+        padding-top: 20rem !important;
+        filter: drop-shadow(0px 1px 1px #111);
     }
 
     .about-rem-section img {
@@ -383,6 +387,24 @@ body {
 
     #version-2 .rem-patch-section .add-to-cart-btn {
         padding: 6px 0px;
+    }
+
+    #version-2 .rem-info p.small {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 1400px) {
+    #version-2 .wear-tech-section {
+        padding: 15rem 10rem !important;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center center;
+        background-color: #5e3063;
+    }
+
+    #version-2 .video-section {
+        padding: 15rem 0rem;
     }
 }
 
