@@ -86,14 +86,6 @@ jQuery(document).ready(function () {
 });
 
 (function ($, ShopifyBuy) {
-
-	if (!ShopifyBuy) {
-		alert("Validating");
-	} else {
-		alert("Shopify Works");
-	}
-	
 	const params = new URLSearchParams(location.search);
-	
-	alert("step2");
+	alert("Params found:" + params.size);
 })(jQuery,ShopifyBuy);
