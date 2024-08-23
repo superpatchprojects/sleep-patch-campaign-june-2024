@@ -88,11 +88,11 @@ jQuery(document).ready(function () {
 (function ($, ShopifyBuy) {
 
 	if (!ShopifyBuy) {
-		return alert("Validating");
+		alert("Validating");
 	} else {
-		return alert("Shopify Works");
+		alert("Shopify Works");
 	}
-// save utm parameters to local storage
+	// save utm parameters to local storage
 	const params = new URLSearchParams(location.search);
 	params.entries().forEach(([k, v]) => sessionStorage.setItem(k, v));
 
@@ -101,6 +101,4 @@ jQuery(document).ready(function () {
 	}).filter(p => p.value);
 
 	alert("step2");
-
-	
-	})(jQuery,ShopifyBuy);
+})(jQuery,ShopifyBuy);
