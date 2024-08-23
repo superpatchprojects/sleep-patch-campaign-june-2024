@@ -92,7 +92,7 @@ if (!ShopifyBuy) {
 	alert ("Shopify Works");
 	}
 
-(async function ($, ShopifyBuy) {
+(async function () {
 
 	if (!ShopifyBuy) {
 		return alert("Validating");
@@ -286,4 +286,4 @@ if (!ShopifyBuy) {
 			}
 		});
 	});
-})(jQuery, ShopifyBuy);
+})();
