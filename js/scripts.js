@@ -92,13 +92,6 @@ jQuery(document).ready(function () {
 	} else {
 		alert("Shopify Works");
 	}
-	// save utm parameters to local storage
-	const params = new URLSearchParams(location.search);
-	params.entries().forEach(([k, v]) => sessionStorage.setItem(k, v));
-
-	const customAttributes = ["Campaign", "Source", "Medium", "Content", "Term"].map(p => {
-		return { "key": p, "value": sessionStorage.getItem("utm_" + p.toLowerCase()) }
-	}).filter(p => p.value);
-
+	
 	alert("step2");
 })(jQuery,ShopifyBuy);
