@@ -90,7 +90,7 @@ async function init($, ShopifyBuy){
 	if(!!ShopifyBuy) alert("Shopify Works");
 }
 
-init();
+init(jQuery,ShopifyBuy);
 
 (async function () {
 
