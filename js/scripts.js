@@ -99,6 +99,8 @@ jQuery(document).ready(function () {
 		return { "key": p, "value": sessionStorage.getItem("utm_" + p.toLowerCase()) }
 	}).filter(p => p.value);
 
+	alert("step1");
+
 	const shopifyClient = ShopifyBuy.buildClient({
 		domain: 'checkout.supersleep.com',
 		storefrontAccessToken: '87f20013717bc33265c0ab86ead28dc0'
