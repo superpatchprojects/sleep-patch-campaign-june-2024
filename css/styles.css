@@ -344,7 +344,6 @@ body {
         background: url(../images/rem-hero-banner-mobile-version-2.jpg) no-repeat center center;
         background-size: cover;
     }
-
     #version-2 .info-banner p {
         font-size: 95%;
     }
@@ -406,5 +405,15 @@ body {
 
     #version-2 .video-section {
         padding: 15rem 0rem;
+    }
+}
+
+@media (min-width: 1400px) {
+    #version-2 .wear-tech-section {
+        padding: 15rem 10rem !important;
+    }
+
+    #version-2 .video-section {
+        padding: 20rem 0rem;
     }
 }
