@@ -389,6 +389,10 @@ body {
     #version-2 .rem-patch-section .add-to-cart-btn {
         padding: 6px 0px;
     }
+
+    #version-2 .rem-info p.small {
+        font-size: 1rem;
+    }
 }
 
 @media (min-width: 1400px) {
