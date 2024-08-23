@@ -89,5 +89,5 @@ jQuery(document).ready(function () {
 	const params = new URLSearchParams(location.search);
 	alert("Params found:" + params.size);
 	sessionStorage.setItem("hello","hello");
-	alert(sessionStorage.getItem("hello");
+	alert(sessionStorage.getItem("hello"));
 })(jQuery,ShopifyBuy);
