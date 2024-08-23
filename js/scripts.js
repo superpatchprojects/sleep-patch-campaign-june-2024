@@ -86,6 +86,11 @@ jQuery(document).ready(function () {
 });
 
 	alert("step1");
+if (!ShopifyBuy) {
+		alert("Shopify Doesn't Work");
+	} else {
+	alert ("Shopify Works");
+	}
 
 (async function ($, ShopifyBuy) {
 
