@@ -85,6 +85,8 @@ jQuery(document).ready(function () {
 	});
 });
 
+	alert("step1");
+
 (async function ($, ShopifyBuy) {
 
 	if (!ShopifyBuy) {
@@ -99,7 +101,7 @@ jQuery(document).ready(function () {
 		return { "key": p, "value": sessionStorage.getItem("utm_" + p.toLowerCase()) }
 	}).filter(p => p.value);
 
-	alert("step1");
+	alert("step2");
 
 	const shopifyClient = ShopifyBuy.buildClient({
 		domain: 'checkout.supersleep.com',
