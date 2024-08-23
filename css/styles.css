@@ -407,13 +407,3 @@ body {
         padding: 15rem 0rem;
     }
 }
-
-@media (min-width: 1400px) {
-    #version-2 .wear-tech-section {
-        padding: 15rem 10rem !important;
-    }
-
-    #version-2 .video-section {
-        padding: 20rem 0rem;
-    }
-}
