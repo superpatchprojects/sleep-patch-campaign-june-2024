@@ -50,7 +50,7 @@ body {
 }
 
 #version-2 .banner-text {
-    padding: 20rem 2rem;
+    padding: 15rem 0rem;
 }
 
 .header .superpatch-logo {
@@ -389,9 +389,13 @@ body {
 @media (min-width: 1400px) {
     #version-2 .wear-tech-section {
         padding: 15rem 10rem !important;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center center;
+        background-color: #5e3063;
     }
 
     #version-2 .video-section {
-        padding: 20rem 0rem;
+        padding: 15rem 0rem;
     }
 }
