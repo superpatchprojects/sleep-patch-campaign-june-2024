@@ -24,11 +24,10 @@ if (window.location.hash) {
 		return {"key": p, "value": sessionStorage.getItem("utm_"+p.toLowerCase())}
 	}).filter( p => p.value );
 	
-	
-	const shopifyClient = ShopifyBuy.buildClient({
-		domain: 'checkout.supersleep.com',
-		storefrontAccessToken: '87f20013717bc33265c0ab86ead28dc0'
-	});
+	// const shopifyClient = ShopifyBuy.buildClient({
+	// 	domain: 'checkout.supersleep.com',
+	// 	storefrontAccessToken: '87f20013717bc33265c0ab86ead28dc0'
+	// });
 
 	const productId = "gid://shopify/Product/" + document.body.dataset.product;
 	const variantId = "gid://shopify/ProductVariant/" + document.body.dataset.variant;
@@ -43,9 +42,9 @@ if (window.location.hash) {
 	const totalPriceElement = document.getElementById('totalPrice');
 	const pricePerItem = 60.00;
 
-	var checkout = await shopifyClient.checkout.create();
+	// var checkout = await shopifyClient.checkout.create();
 	
-	checkout = await shopifyClient.checkout.updateAttributes(checkout.id, { customAttributes });
+	// checkout = await shopifyClient.checkout.updateAttributes(checkout.id, { customAttributes });
 	
 	$(document).ready(function () {
 		// carousels
