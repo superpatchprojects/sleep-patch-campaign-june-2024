@@ -49,6 +49,14 @@ body {
     padding: 10rem 2rem;
 }
 
+#version-2 .banner-text {
+    padding: 20rem 2rem;
+}
+
+#version-2 .superpatch-logo {
+    height: 85%;
+}
+
 /* rem patch section */
 .rem-patch-section .review .write-review {
     color: #000000;
@@ -142,6 +150,10 @@ body {
     background: url(../images/sleep-deeply.png) no-repeat center center;
     background-size: cover;
     padding: 10rem 0rem;
+}
+
+#version-2 .video-section {
+    padding: 20rem 0rem;
 }
 
 #playButton {
@@ -306,31 +318,36 @@ body {
     color: #fff !important;
 }
 
-.superpatch-logo {
-    width: 75%;
-}
-
 /* media queries */
 @media (max-width: 767px) {
     .video-section {
         background: url(../images/sleep-deeply-mobile.png) no-repeat center center;
         background-size: cover;
-        padding: 5rem 0rem;
+        padding: 5rem 0rem !important;
     }
 
     .info-banner {
         background-color: rgba(48, 48, 48, .4);
     }
-}
 
-@media (max-width: 991px) {
     .banner {
-        background: linear-gradient(to bottom, rgb(245 246 252 / 0%), rgb(255 255 255 / 73%)), url(../images/rem-hero-banner.png) no-repeat center center;
+        background: url(../images/rem-hero-banner-mobile.jpg) no-repeat center center;
         background-size: cover;
     }
 
+    #version-2 .banner {
+        background: url(../images/rem-hero-banner-mobile-version-2.jpg) no-repeat center center;
+        background-size: cover;
+    }
+
+    #version-2 .info-banner p {
+        font-size: 95%;
+    }
+}
+
+@media (max-width: 992px) {
     .banner-text {
-        padding: 8rem 2rem 4rem 2rem;
+        padding: 8rem 2rem 4rem 2rem !important;
     }
 
     .about-rem-section img {
@@ -357,5 +374,11 @@ body {
     .wear-tech-section {
         background-image: none;
         background-color: #5E3063;
+    }
+}
+
+@media (min-width: 1400px) {
+    #version-2 .wear-tech-section {
+        padding: 15rem 10rem !important;
     }
 }
