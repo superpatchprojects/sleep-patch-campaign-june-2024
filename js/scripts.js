@@ -1,3 +1,9 @@
+// Remove version based on UTM
+(function(isV2){
+	if (isV2) return document.getElementById('version-1').remove();
+	return document.getElementById('version-2').remove();
+})(window.is_v2)
+
 // Opens up modal on hash		
 if (window.location.hash) {
 	var modalId = window.location.hash.substring(1);
