@@ -19,14 +19,6 @@
             style.appendChild(document.createTextNode(version + " { display: none; }"));
             head.appendChild(style);
         })((window.is_v2 ? "#version-1" : "#version-2"));
-
-        document.addEventListener("DOMContentLoaded", function () {
-            if (window.is_v2) {
-                document.getElementById('version-1').remove();
-            } else {
-                document.getElementById('version-2').remove();
-            }
-        });
     </script>
 
     <!-- Google Tag Manager -->
