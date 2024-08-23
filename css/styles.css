@@ -53,8 +53,13 @@ body {
     padding: 20rem 2rem;
 }
 
+.header .superpatch-logo {
+    max-width: 50%;
+}
+
 #version-2 .superpatch-logo {
     height: 85%;
+    max-width: 50%;
 }
 
 /* rem patch section */
