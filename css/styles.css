@@ -405,6 +405,10 @@ body {
         background-color: #5E3063;
     }
 
+    #version-2 .wear-tech-section {
+       padding: 3rem 0;
+    }
+    
     #version-2 .rem-patch-section .add-to-cart-btn {
         padding: 6px 0px;
     }
