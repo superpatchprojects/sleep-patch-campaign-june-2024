@@ -218,6 +218,16 @@ body {
     background-position: top center;
 }
 
+#version-2 .wear-tech-section {
+    background-image: none;
+    padding: 6rem 0;
+    background-color: #5e3063;
+}
+
+#version-2 .wear-tech-section h2 {
+    margin-bottom: 3rem;
+}
+
 .how-it-works {
     background-color: #FFFFFF;
     border-radius: 10px;
@@ -404,13 +414,24 @@ body {
     }
 }
 
+@media (min-width: 992px) and (max-width: 1199px) {
+    #version-2 .wear-tech-section p {
+        font-size: 14px;
+    }
+
+    #version-2 .rem-patch-bg {
+        display: flex;
+        align-items: end;
+    }
+}
+
 @media (min-width: 1400px) {
-    #version-2 .wear-tech-section {
-        padding: 10rem 10rem !important;
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center center;
-        background-color: #5e3063;
+    #version-2 .wear-tech-section .how-it-works {
+        padding: 20px 10px 20px 10px;
+    }
+
+    #version-2 .wear-tech-section .how-it-works img {
+        max-width: 60%;
     }
 
     #version-2 .video-section {
