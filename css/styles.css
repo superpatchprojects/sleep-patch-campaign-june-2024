@@ -224,14 +224,10 @@ body {
     background-color: #5e3063;
 }
 
-#version-2 .wear-tech-section h2 {
-    margin-bottom: 3rem;
-}
-
 .how-it-works {
     background-color: #FFFFFF;
     border-radius: 10px;
-    padding: 20px 10px 0 10px;
+    padding: 20px 10px 20px 10px;
     height: 100%;
 }
 
@@ -405,6 +401,10 @@ body {
         background-color: #5E3063;
     }
 
+    #version-2 .wear-tech-section {
+        padding: 4rem 0;
+    }
+
     #version-2 .rem-patch-section .add-to-cart-btn {
         padding: 6px 0px;
     }
@@ -426,10 +426,6 @@ body {
 }
 
 @media (min-width: 1400px) {
-    #version-2 .wear-tech-section .how-it-works {
-        padding: 20px 10px 20px 10px;
-    }
-
     #version-2 .wear-tech-section .how-it-works img {
         max-width: 60%;
     }
