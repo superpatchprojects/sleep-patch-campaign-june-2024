@@ -190,6 +190,10 @@ body {
     filter: grayscale(1);
 }
 
+#version-2 .logos-section img {
+    width: 80%;
+}
+
 /* sleepless nights section */
 .sleepless-nights-section {
     background-image: url(../images/rem-bg-02.png);
@@ -402,7 +406,7 @@ body {
 
 @media (min-width: 1400px) {
     #version-2 .wear-tech-section {
-        padding: 15rem 10rem !important;
+        padding: 10rem 10rem !important;
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center center;
