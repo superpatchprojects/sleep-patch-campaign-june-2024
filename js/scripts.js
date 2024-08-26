@@ -143,9 +143,11 @@ if (window.location.hash) {
 
 			if (quantity == 0) return;
 
-			setTimeout(() => {
-				spinner.style.display = 'block';
-			}, 100);
+			if (spinner) {
+				setTimeout(() => {
+					spinner.style.display = 'block';
+				}, 100);
+			}
 
 			checkout = await shopifyClient.checkout.addLineItems(checkout.id, { variantId, quantity });
 			let new_qty_available = max_qty_available - checkout.lineItems[0].quantity;
@@ -166,7 +168,9 @@ if (window.location.hash) {
 			});
 			document.dispatchEvent(event);
 
-			spinner.style.display = 'none';
+			if (spinner) {
+				spinner.style.display = 'none';
+			}
 		});
 	});
 
@@ -176,9 +180,11 @@ if (window.location.hash) {
 
 		const spinner = this.nextElementSibling;
 
-		setTimeout(() => {
-			spinner.style.display = 'block';
-		}, 100);
+		if (spinner) {
+			setTimeout(() => {
+				spinner.style.display = 'block';
+			}, 100);
+		}
 
 		let id = checkout.lineItems[0].id;
 		let quantity = parseInt(this.value);
@@ -201,7 +207,9 @@ if (window.location.hash) {
 		});
 		document.dispatchEvent(event);
 
-		spinner.style.display = 'none';
+		if (spinner) {
+			spinner.style.display = 'none';
+		}
 	});
 
 	checkoutButtons.forEach(ckbt => {
@@ -213,9 +221,11 @@ if (window.location.hash) {
 			e.preventDefault();
 			const spinner = this.nextElementSibling;
 
-			setTimeout(() => {
-				spinner.style.display = 'block';
-			}, 100);
+			if (spinner) {
+				setTimeout(() => {
+					spinner.style.display = 'block';
+				}, 100);
+			}
 
 			if (!(this_checkout.lineItems[0] && this_checkout.lineItems[0].variant)) {
 				this_checkout = await shopifyClient.checkout.create()
@@ -223,7 +233,9 @@ if (window.location.hash) {
 					.then(temp_checkout => shopifyClient.checkout.addLineItems(temp_checkout.id, { variantId, quantity: parseInt(this.dataset.quantity) }));
 
 			}
-			spinner.style.display = 'none';
+			if (spinner) {
+				spinner.style.display = 'none';
+			}
 			let event = new CustomEvent("init_checkout", {
 				"detail": {
 					quantity: this_checkout.lineItems.reduce((a, l) => a += l.quantity, 0),
@@ -244,7 +256,7 @@ if (window.location.hash) {
 	});
 
 	function showCartError(){
-		return alert("Our cart is experiencing some issues 😔. Please try again after sometime. We apologize for the incovenience.");
+		return alert("Our cart is experiencing some issues 😔. Please try again after sometime. We apologize for the inconvenience.");
 	}
 
 	async function init_checkout(checkout){
