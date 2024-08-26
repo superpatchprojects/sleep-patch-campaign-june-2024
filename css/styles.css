@@ -344,8 +344,13 @@ body {
         background: url(../images/rem-hero-banner-mobile-version-2.jpg) no-repeat center center;
         background-size: cover;
     }
+
     #version-2 .info-banner p {
-        font-size: 95%;
+        font-size: 80%;
+    }
+
+    #version-2 .header .superpatch-logo {
+        height: 45px;
     }
 }
 
