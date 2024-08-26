@@ -361,7 +361,7 @@ body {
 
     #version-2 .banner-text {
         padding-top: 15vh !important;
-        padding-bottom: 2vh !important;
+        padding-bottom: 20vh !important;
         filter: drop-shadow(0px 1px 1px #111);
     }
 
