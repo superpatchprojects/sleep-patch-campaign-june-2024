@@ -35,12 +35,12 @@ body {
     width: 100%;
     height: 100%;
     background: url(../images/rem-hero-banner.png) no-repeat center center;
-    background-size: cover;
+    background-size: cover !important;
     z-index: 1;
 }
 
-.banner h1 {
-    line-height: 1;
+.header .superpatch-logo {
+    max-width: 50%;
 }
 
 .banner-text {
@@ -49,12 +49,13 @@ body {
     padding: 10rem 2rem;
 }
 
-#version-2 .banner-text {
-    padding: 15rem 0rem;
+#version-2 .banner {
+    background: url(../images/Sleep_patch_01.jpg) no-repeat center center;
 }
 
-.header .superpatch-logo {
-    max-width: 50%;
+#version-2 .banner-text {
+    padding: 15rem 0rem;
+    filter: drop-shadow(0px 2px 1px #111);
 }
 
 #version-2 .header .superpatch-logo {
@@ -105,6 +106,10 @@ body {
     box-shadow: none;
 }
 
+#version-2 .rem-patch-section img {
+    border-radius: 15px;
+}
+
 /* about rem section */
 .good-sleep .woman-image {
     background: url(../images/why-good-sleep-is-essential.png) no-repeat center center;
@@ -148,6 +153,11 @@ body {
 
 .info-text {
     padding: 8rem 4rem;
+}
+
+#version-2 .choose-rem-patch .woman-image {
+    background: url(../images/Sleep_patch_02.jpg) no-repeat center center;
+    background-size: cover;
 }
 
 /* video section */
@@ -214,16 +224,6 @@ body {
     background-position: top center;
 }
 
-#version-2 .wear-tech-section {
-    background-image: none;
-    padding: 6rem 0;
-    background-color: #5e3063;
-}
-
-#version-2 .wear-tech-section h2 {
-    margin-bottom: 3rem;
-}
-
 .how-it-works {
     background-color: #FFFFFF;
     border-radius: 10px;
@@ -233,6 +233,16 @@ body {
 
 .how-it-works img {
     filter: grayscale(1);
+}
+
+#version-2 .wear-tech-section {
+    background-image: none;
+    padding: 6rem 0;
+    background-color: #5e3063;
+}
+
+#version-2 .wear-tech-section h2 {
+    margin-bottom: 3rem;
 }
 
 /* faq section */
@@ -347,12 +357,14 @@ body {
 
     .banner {
         background: url(../images/rem-hero-banner-mobile.jpg) no-repeat center center;
-        background-size: cover;
     }
 
     #version-2 .banner {
-        background: url(../images/rem-hero-banner-mobile-version-2.jpg) no-repeat center center;
-        background-size: cover;
+        background: url(../images/Sleep_patch_mobile_01.jpg) no-repeat center center;
+    }
+
+    #version-2 .info-banner {
+        background-color: #313030;
     }
 
     #version-2 .info-banner p {
@@ -367,21 +379,6 @@ body {
 @media (max-width: 992px) {
     .banner-text {
         padding: 8rem 2rem 4rem 2rem !important;
-    }
-
-    #version-2 .banner-text {
-        padding-top: 15vh !important;
-        padding-bottom: 20vh !important;
-        filter: drop-shadow(0px 1px 1px #111);
-    }
-
-    .about-rem-section img {
-        object-fit: cover;
-        width: 100%;
-        height: auto;
-        aspect-ratio: 1.75;
-        object-position: center;
-        border-radius: 10px;
     }
 
     .info-text {
@@ -399,6 +396,24 @@ body {
     .wear-tech-section {
         background-image: none;
         background-color: #5E3063;
+    }
+
+    .about-rem-section img {
+        object-fit: cover;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1.75;
+        object-position: center;
+        border-radius: 10px;
+    }
+
+    #version-2 .banner-text {
+        padding-top: 15vh !important;
+        padding-bottom: 15vh !important;
+    }
+
+    #version-2 .about-rem-section img {
+        aspect-ratio: 2 / 1.2;
     }
 
     #version-2 .wear-tech-section {
