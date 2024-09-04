@@ -1,5 +1,5 @@
 // Remove version based on UTM
-(function(isV2){
+(function (isV2) {
 	if (isV2) return document.getElementById('version-1').remove();
 	return document.getElementById('version-2').remove();
 })(window.is_v2)
@@ -86,13 +86,13 @@ if (window.location.hash) {
 
 	// save utm parameters to local storage
 	const params = new URLSearchParams(location.search);
-	params.forEach((v,k) => sessionStorage.setItem(k,v));
-	
-	const customAttributes = ["Campaign","Source","Medium","Content","Term","Version"].map( p => {
-		return {"key": p, "value": sessionStorage.getItem("utm_"+p.toLowerCase())}
-	}).filter( p => p.value );
-	
-	
+	params.forEach((v, k) => sessionStorage.setItem(k, v));
+
+	const customAttributes = ["Campaign", "Source", "Medium", "Content", "Term", "Version"].map(p => {
+		return { "key": p, "value": sessionStorage.getItem("utm_" + p.toLowerCase()) }
+	}).filter(p => p.value);
+
+
 	var checkout;
 	const shopifyClient = ShopifyBuy.buildClient({
 		domain: 'checkout.supersleep.com',
@@ -134,8 +134,8 @@ if (window.location.hash) {
 
 	addToCartButtons.forEach(button => {
 		button.addEventListener('click', async function () {
-			if( !checkout ) checkout = await init_checkout(checkout);
-			if( !checkout ) return showCartError();
+			if (!checkout) checkout = await init_checkout(checkout);
+			if (!checkout) return showCartError();
 
 			const spinner = this.nextElementSibling;
 
@@ -171,8 +171,8 @@ if (window.location.hash) {
 	});
 
 	quantitySelect.addEventListener('change', async function () {
-		if( !checkout ) checkout = await init_checkout(checkout);
-		if( !checkout ) return showCartError();
+		if (!checkout) checkout = await init_checkout(checkout);
+		if (!checkout) return showCartError();
 
 		const spinner = this.nextElementSibling;
 
@@ -206,8 +206,8 @@ if (window.location.hash) {
 
 	checkoutButtons.forEach(ckbt => {
 		ckbt.addEventListener('click', async function (e) {
-			if( !checkout ) checkout = await init_checkout(checkout);
-			if( !checkout ) return showCartError();
+			if (!checkout) checkout = await init_checkout(checkout);
+			if (!checkout) return showCartError();
 
 			var this_checkout = checkout;
 			e.preventDefault();
@@ -239,15 +239,19 @@ if (window.location.hash) {
 			});
 			document.dispatchEvent(event);
 			await new Promise(r => setTimeout(r, 1000));
-			location = this_checkout.webUrl;
+
+			const checkoutLink = document.createElement('a');
+			checkoutLink.href = this_checkout.webUrl;
+
+			checkoutLink.click();
 		});
 	});
 
-	function showCartError(){
+	function showCartError() {
 		return alert("Our cart is experiencing some issues 😔. Please try again after sometime. We apologize for the inconvenience.");
 	}
 
-	async function init_checkout(checkout){
+	async function init_checkout(checkout) {
 		checkout = await shopifyClient.checkout.create().catch(e => null);
 		checkout = await shopifyClient.checkout.updateAttributes(checkout?.id, { customAttributes }).catch(e => null);
 		return checkout;
@@ -274,7 +278,7 @@ if (window.location.hash) {
 		button.addEventListener('click', function () {
 			let newValue = parseInt(inputFields[0].value) + 1;
 			updateQuantities(Math.min(newValue, inputFields[0].max));
-		}); 
+		});
 	});
 
 	minusButtons.forEach(button => {
@@ -286,7 +290,7 @@ if (window.location.hash) {
 			}
 		});
 	});
-	
+
 	checkout = await init_checkout(checkout);
-	
+
 })(jQuery, ShopifyBuy);
