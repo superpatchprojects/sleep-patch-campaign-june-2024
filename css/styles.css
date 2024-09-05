@@ -331,18 +331,6 @@ body {
     height: 100%;
 }
 
-.spinner {
-    display: none;
-    width: 1rem;
-    height: 1rem;
-    color: #555;
-    --bs-spinner-border-width: 2px;
-}
-
-.spinner-white {
-    color: #fff !important;
-}
-
 /* media queries */
 @media (max-width: 767px) {
     .video-section {

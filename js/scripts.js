@@ -14,7 +14,7 @@ if (window.location.hash) {
 	}
 }
 
-(async function ($, ShopifyBuy) {
+(async function ($) {
 
 	$('.reviews').owlCarousel({
 		loop: true,
@@ -84,34 +84,6 @@ if (window.location.hash) {
 		}
 	});
 
-	// save utm parameters to local storage
-	const params = new URLSearchParams(location.search);
-	params.forEach((v, k) => sessionStorage.setItem(k, v));
-
-	const customAttributes = ["Campaign", "Source", "Medium", "Content", "Term", "Version"].map(p => {
-		return { "key": p, "value": sessionStorage.getItem("utm_" + p.toLowerCase()) }
-	}).filter(p => p.value);
-
-
-	var checkout;
-	const shopifyClient = ShopifyBuy.buildClient({
-		domain: 'checkout.supersleep.com',
-		storefrontAccessToken: '87f20013717bc33265c0ab86ead28dc0'
-	});
-
-	const productId = "gid://shopify/Product/" + document.body.dataset.product;
-	const variantId = "gid://shopify/ProductVariant/" + document.body.dataset.variant;
-	const max_qty_available = parseInt(document.body.dataset.maxQuantity);
-
-	const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-	const checkoutButtons = document.querySelectorAll('[data-action="checkout"]');
-	const plusButtons = document.querySelectorAll('.plus-btn');
-	const minusButtons = document.querySelectorAll('.minus-btn');
-	const inputFields = document.querySelectorAll('.quantity');
-	const quantitySelect = document.querySelector('.quantity-select');
-	const totalPriceElement = document.getElementById('totalPrice');
-	const pricePerItem = 60.00;
-
 	document.getElementById('playButton').addEventListener('click', function () {
 		var container = document.querySelector('.video');
 		var videoHtml = `
@@ -128,69 +100,67 @@ if (window.location.hash) {
 		videoSection.style.padding = '0';
 	});
 
+	// save utm parameters to local storage
+	const params = new URLSearchParams(location.search);
+	params.forEach((v, k) => sessionStorage.setItem(k, v));
+
+	const customAttributes = ["Campaign", "Source", "Medium", "Content", "Term", "Version"].map(p => {
+		return { "key": p, "value": sessionStorage.getItem("utm_" + p.toLowerCase()) }
+	}).filter(p => p.value);
+
+	var currentQuantity = 0;
+	const productId = document.body.dataset.id;
+	const productName = document.body.dataset.name;
+	const productGID = "gid://shopify/Product/" + document.body.dataset.product;
+	const variantId = "gid://shopify/ProductVariant/" + document.body.dataset.variant;
+	const max_qty_available = parseInt(document.body.dataset.maxQuantity);
+
+	const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+	const checkoutButtons = document.querySelectorAll('[data-action="checkout"]');
+	const plusButtons = document.querySelectorAll('.plus-btn');
+	const minusButtons = document.querySelectorAll('.minus-btn');
+	const inputFields = document.querySelectorAll('.quantity');
+	const quantitySelect = document.querySelector('.quantity-select');
+	const totalPriceElement = document.getElementById('totalPrice');
+	const pricePerItem = 60.00;
 
 	// add to cart and cart modal
 	inputFields.forEach(inp => inp.max = max_qty_available);
 
 	addToCartButtons.forEach(button => {
 		button.addEventListener('click', async function () {
-			if (!checkout) checkout = await init_checkout(checkout);
-			if (!checkout) return showCartError();
-
-			const spinner = this.nextElementSibling;
-
 			let quantity = parseInt(button.closest(".row").querySelector("input").value);
+			currentQuantity = currentQuantity + quantity;
 
 			if (quantity == 0) return;
 
-			if (spinner) {
-				setTimeout(() => {
-					spinner.style.display = 'block';
-				}, 100);
-			}
-
-			checkout = await shopifyClient.checkout.addLineItems(checkout.id, { variantId, quantity });
-			let new_qty_available = max_qty_available - checkout.lineItems[0].quantity;
+			let new_qty_available = max_qty_available - currentQuantity;
 			inputFields.forEach(inp => { inp.max = new_qty_available; inp.value = Math.min(1, new_qty_available); });
-			quantitySelect.value = checkout.lineItems[0].quantity;
+			quantitySelect.value = currentQuantity;
 			updateTotalPrice(max_qty_available - new_qty_available);
 			document.getElementById('cartModalOverlay').style.display = max_qty_available - new_qty_available == 0 ? '' : 'block';
 			quantitySelect.closest(".row").querySelector('button').dataset.quantity = max_qty_available - new_qty_available;
 
 			let event = new CustomEvent("add_to_cart", {
 				"detail": {
-					item_id: checkout.lineItems[0].variant.id.replace(/.*\//g, ""),
-					item_sku: checkout.lineItems[0].variant.sku,
-					item_name: checkout.lineItems[0].title,
-					item_price: parseFloat(checkout.lineItems[0].variant.priceV2.amount),
+					item_id: productId,
+					item_sku: productId.slice(0, -2),
+					item_name: productName,
+					item_price: pricePerItem,
 					quantity: quantity
 				}
 			});
 			document.dispatchEvent(event);
-
-			if (spinner) {
-				spinner.style.display = 'none';
-			}
 		});
 	});
 
 	quantitySelect.addEventListener('change', async function () {
-		if (!checkout) checkout = await init_checkout(checkout);
-		if (!checkout) return showCartError();
-
-		const spinner = this.nextElementSibling;
-
-		if (spinner) {
-			setTimeout(() => {
-				spinner.style.display = 'block';
-			}, 100);
-		}
-
-		let id = checkout.lineItems[0].id;
 		let quantity = parseInt(this.value);
 
-		checkout = await shopifyClient.checkout.updateLineItems(checkout.id, { id, quantity });
-		let new_qty_available = max_qty_available - (checkout.lineItems[0] ? checkout.lineItems[0].quantity : 0);
+		currentQuantity = quantity;
+
+		let new_qty_available = max_qty_available - (currentQuantity ? currentQuantity : 0);
+
 		inputFields.forEach(inp => { inp.max = new_qty_available; inp.value = Math.min(1, new_qty_available); });
 		updateTotalPrice(max_qty_available - new_qty_available);
 		document.getElementById('cartModalOverlay').style.display = max_qty_available - new_qty_available == 0 ? '' : 'block';
@@ -198,78 +168,60 @@ if (window.location.hash) {
 
 		let event = new CustomEvent("add_to_cart", {
 			"detail": {
-				item_id: checkout.lineItems[0].variant.id.replace(/.*\//g, ""),
-				item_sku: checkout.lineItems[0].variant.sku,
-				item_name: checkout.lineItems[0].title,
-				item_price: parseFloat(checkout.lineItems[0].variant.priceV2.amount),
+				item_id: productId,
+				item_sku: productId.slice(0, -2),
+				item_name: productName,
+				item_price: pricePerItem,
 				quantity: quantity
 			}
 		});
 		document.dispatchEvent(event);
-
-		if (spinner) {
-			spinner.style.display = 'none';
-		}
 	});
 
 	checkoutButtons.forEach(ckbt => {
 		ckbt.addEventListener('click', async function (e) {
-			if (!checkout) checkout = await init_checkout(checkout);
-			if (!checkout) return showCartError();
-
-			var this_checkout = checkout;
 			e.preventDefault();
-			const spinner = this.nextElementSibling;
 
-			if (spinner) {
-				setTimeout(() => {
-					spinner.style.display = 'block';
-				}, 100);
-			}
+			let quantityCount = Math.max(1, currentQuantity);
+			let totalValue = quantityCount * pricePerItem;
 
-			if (!(this_checkout.lineItems[0] && this_checkout.lineItems[0].variant)) {
-				this_checkout = await shopifyClient.checkout.create()
-					.then(temp_checkout => shopifyClient.checkout.updateAttributes(temp_checkout.id, { customAttributes }))
-					.then(temp_checkout => shopifyClient.checkout.addLineItems(temp_checkout.id, { variantId, quantity: parseInt(this.dataset.quantity) }));
-
-			}
-
-			if (spinner) {
-				spinner.style.display = 'none';
-			}
+			let items = [{
+				item_id: productId,
+				item_sku: productId.slice(0, -2),
+				item_name: productName,
+				item_price: pricePerItem,
+				quantity: quantityCount
+			}];
 
 			let event = new CustomEvent("init_checkout", {
 				"detail": {
-					quantity: this_checkout.lineItems.reduce((a, l) => a += l.quantity, 0),
-					value: parseFloat(this_checkout.paymentDueV2.amount),
-					items: this_checkout.lineItems.map(item => ({
-						item_id: item.variant.id.replace(/.*\//g, ""),
-						item_sku: item.variant.sku,
-						item_name: item.title,
-						item_price: parseFloat(item.variant.priceV2.amount),
-						quantity: parseInt(item.quantity),
-					}))
+					quantity: quantityCount,
+					value: totalValue,
+					items: items
 				}
 			});
 			document.dispatchEvent(event);
-			await new Promise(r => setTimeout(r, 1000));
+
+			const utmParams = ['utm_campaign', 'utm_source', 'utm_medium'];
+			let utmString = utmParams.reduce((acc, param) => {
+				const value = params.get(param);
+				if (value) {
+					acc += `&${param}=${encodeURIComponent(value)}`;
+				}
+				return acc;
+			}, '');
+
+			const checkoutVariantId = variantId.replace('gid://shopify/ProductVariant/', '');
+
+			const checkoutUrl = `https://checkout.supersleep.com/cart/${checkoutVariantId}:${quantityCount}?access_token=87f20013717bc33265c0ab86ead28dc0${utmString}`;
 
 			const checkoutLink = document.createElement('a');
-			checkoutLink.href = this_checkout.webUrl;
+			checkoutLink.href = checkoutUrl;
+			await new Promise(r => setTimeout(r, 1000));
 
 			checkoutLink.click();
 		});
 	});
-
-	function showCartError() {
-		return alert("Our cart is experiencing some issues 😔. Please try again after sometime. We apologize for the inconvenience.");
-	}
-
-	async function init_checkout(checkout) {
-		checkout = await shopifyClient.checkout.create().catch(e => null);
-		checkout = await shopifyClient.checkout.updateAttributes(checkout?.id, { customAttributes }).catch(e => null);
-		return checkout;
-	}
 
 	function updateQuantities(value) {
 		inputFields.forEach(input => {
@@ -304,7 +256,4 @@ if (window.location.hash) {
 			}
 		});
 	});
-
-	checkout = await init_checkout(checkout);
-
-})(jQuery, ShopifyBuy);
+})(jQuery);
