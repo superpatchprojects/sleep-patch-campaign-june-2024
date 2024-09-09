@@ -202,7 +202,7 @@ if (window.location.hash) {
 			});
 			document.dispatchEvent(event);
 
-			const utmParams = ['utm_campaign', 'utm_source', 'utm_medium'];
+			const utmParams = ['utm_campaign', 'utm_source', 'utm_medium', 'utm_content', 'utm_version'];
 			let utmString = utmParams.reduce((acc, param) => {
 				const value = params.get(param);
 				if (value) {
@@ -211,9 +211,20 @@ if (window.location.hash) {
 				return acc;
 			}, '');
 
-			const checkoutVariantId = variantId.replace('gid://shopify/ProductVariant/', '');
+			let utmContentString = '';
+			const utmContent = params.get('utm_content');
+			const utmVersion = params.get('utm_version');
 
-			const checkoutUrl = `https://checkout.supersleep.com/cart/${checkoutVariantId}:${quantityCount}?access_token=87f20013717bc33265c0ab86ead28dc0${utmString}`;
+			if (utmContent && utmVersion) {
+				utmContentString = `&utm_content=${encodeURIComponent(`${utmContent},${utmVersion}`)}`;
+			} else if (utmContent) {
+				utmContentString = `&utm_content=${encodeURIComponent(utmContent)}`;
+			} else if (utmVersion) {
+				utmContentString = `&utm_content=${encodeURIComponent(utmVersion)}`;
+			}
+
+			const checkoutVariantId = variantId.replace('gid://shopify/ProductVariant/', '');
+			const checkoutUrl = `https://checkout.supersleep.com/cart/${checkoutVariantId}:${quantityCount}?access_token=87f20013717bc33265c0ab86ead28dc0${utmString}${utmContentString}`;
 
 			const checkoutLink = document.createElement('a');
 			checkoutLink.href = checkoutUrl;
