@@ -202,10 +202,13 @@ if (window.location.hash) {
 			});
 			document.dispatchEvent(event);
 
-			const utmParams = ['utm_campaign', 'utm_source', 'utm_medium', 'utm_content', 'utm_version'];
+			const utmParams = ['utm_campaign', 'utm_source', 'utm_medium', 'utm_content'];
 			let utmString = utmParams.reduce((acc, param) => {
 				const value = params.get(param);
 				if (value) {
+					if (param === 'utm_content' && params.get('utm_version')) {
+						return acc;
+					}
 					acc += `&${param}=${encodeURIComponent(value)}`;
 				}
 				return acc;
@@ -215,12 +218,14 @@ if (window.location.hash) {
 			const utmContent = params.get('utm_content');
 			const utmVersion = params.get('utm_version');
 
-			if (utmContent && utmVersion) {
-				utmContentString = `&utm_content=${encodeURIComponent(`${utmContent},${utmVersion}`)}`;
+			if (utmVersion) {
+				if (utmContent) {
+					utmContentString = `&utm_content=${encodeURIComponent(`${utmContent},${utmVersion}`)}`;
+				} else {
+					utmContentString = `&utm_content=${encodeURIComponent(utmVersion)}`;
+				}
 			} else if (utmContent) {
 				utmContentString = `&utm_content=${encodeURIComponent(utmContent)}`;
-			} else if (utmVersion) {
-				utmContentString = `&utm_content=${encodeURIComponent(utmVersion)}`;
 			}
 
 			const checkoutVariantId = variantId.replace('gid://shopify/ProductVariant/', '');
