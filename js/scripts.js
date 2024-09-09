@@ -202,7 +202,7 @@ if (window.location.hash) {
 			});
 			document.dispatchEvent(event);
 
-			const utmParams = ['utm_campaign', 'utm_source', 'utm_medium', 'utm_content'];
+			const utmParams = ['utm_campaign', 'utm_source', 'utm_medium'];
 			let utmString = utmParams.reduce((acc, param) => {
 				const value = params.get(param);
 				if (value) {
