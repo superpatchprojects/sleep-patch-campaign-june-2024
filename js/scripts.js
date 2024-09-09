@@ -206,9 +206,6 @@ if (window.location.hash) {
 			let utmString = utmParams.reduce((acc, param) => {
 				const value = params.get(param);
 				if (value) {
-					if (param === 'utm_content' && params.get('utm_version')) {
-						return acc;
-					}
 					acc += `&${param}=${encodeURIComponent(value)}`;
 				}
 				return acc;
