@@ -84,8 +84,9 @@ if (window.location.hash) {
 		}
 	});
 
-	document.getElementById('playButton').addEventListener('click', function () {
-		var container = document.querySelector('.video');
+	// sleep deeply video
+	document.getElementById('sleepDeeplyVideo').addEventListener('click', function () {
+		var container = document.querySelector('.sleep-deeply-video');
 		var videoHtml = `
 			<div class="col-md-8 offset-md-2 mb-4">
 				<div class="ratio ratio-16x9">
@@ -96,8 +97,30 @@ if (window.location.hash) {
 
 		container.innerHTML = videoHtml;
 
-		var videoSection = document.querySelector('.video-section');
+		var videoSection = document.querySelector('.sleep-deeply-video-section');
 		videoSection.style.padding = '0';
+	});
+
+	// jay glazer video
+	document.getElementById('jayGlazerVideo').addEventListener('click', function () {
+		var container = document.querySelector('.jay-glazer-video');
+		var videoHtml = `
+			<div class="video-container">
+				<iframe src="https://www.youtube.com/embed/3BucBrM8xRM?autoplay=1&rel=0" title="The REM Super Patch - One Man's Journey" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+			</div>
+		`;
+
+		container.innerHTML = videoHtml;
+
+		var videoSection = document.querySelector('.jay-glazer-video-section');
+
+		if (videoSection) {
+			if (document.querySelector('#version-1')) {
+				videoSection.style.padding = '21.5rem 0';
+			} else if (document.querySelector('#version-2')) {
+				videoSection.style.padding = '24.5rem 0';
+			}
+		}
 	});
 
 	// save utm parameters to local storage
