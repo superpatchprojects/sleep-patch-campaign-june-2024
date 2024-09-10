@@ -162,10 +162,19 @@ body {
 /* jay glazer video section */
 .jay-glazer-video-section {
     position: relative;
-    background: url(../images/cover-jay-no-copy.jpg) no-repeat center center;
+    background: url(../images/cover-jay-no-copy.jpg) no-repeat top center;
     background-size: cover;
-    padding: 18rem 0 4rem 0;
-    margin-top: 7rem;
+    height: auto;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+
+.jay-glazer-video {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
 }
 
 .jay-glazer-video iframe {
@@ -360,9 +369,9 @@ body {
     }
 
     .jay-glazer-video-section {
-        padding: 4rem 0;
+        padding: 24rem 0 0rem 0;
     }
-    
+
     .info-banner {
         background-color: rgba(48, 48, 48, .4);
     }
@@ -439,6 +448,10 @@ body {
     #version-2 .rem-info p.small {
         font-size: 1rem;
     }
+
+    .jay-glazer-video {
+        bottom: 2% !important;
+    }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -468,4 +481,9 @@ body {
     #version-2 .logos-section img {
         width: 60%;
     }
+
+    .jay-glazer-video-section {
+        margin-top: 5rem !important;
+    }
+ 
 }

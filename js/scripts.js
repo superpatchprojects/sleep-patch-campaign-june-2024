@@ -104,6 +104,8 @@ if (window.location.hash) {
 	// jay glazer video
 	document.getElementById('jayGlazerVideo').addEventListener('click', function () {
 		var container = document.querySelector('.jay-glazer-video');
+
+		container.classList.remove('jay-glazer-video');
 		var videoHtml = `
 			<div class="video-container">
 				<div class="ratio ratio-16x9">
