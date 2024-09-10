@@ -118,8 +118,8 @@ if (window.location.hash) {
 		var videoSection = document.querySelector('.jay-glazer-video-section');
 		videoSection.style.padding = '0';
 
-		var videoSection = document.querySelector('.jay-glazer-video');
-		videoSection.style.bottom = '0';
+		var videoContainer = document.querySelector('.jay-glazer-video');
+		videoContainer.style.setProperty('bottom', '0', 'important');
 	});
 
 	// save utm parameters to local storage
