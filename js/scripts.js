@@ -105,7 +105,6 @@ if (window.location.hash) {
 	document.getElementById('jayGlazerVideo').addEventListener('click', function () {
 		var container = document.querySelector('.jay-glazer-video');
 
-		container.classList.remove('jay-glazer-video');
 		var videoHtml = `
 			<div class="video-container">
 				<div class="ratio ratio-16x9">
@@ -118,6 +117,9 @@ if (window.location.hash) {
 
 		var videoSection = document.querySelector('.jay-glazer-video-section');
 		videoSection.style.padding = '0';
+
+		var videoSection = document.querySelector('.jay-glazer-video');
+		videoSection.style.bottom = '0';
 	});
 
 	// save utm parameters to local storage
