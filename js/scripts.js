@@ -107,16 +107,11 @@ if (window.location.hash) {
 
 		var videoHtml = `
 			<div class="video-container">
-				<div class="ratio ratio-16x9">
 				<iframe src="https://www.youtube.com/embed/3BucBrM8xRM?autoplay=1&rel=0" title="The REM Super Patch - One Man's Journey" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-				</div>
 			</div>
 		`;
 
 		container.innerHTML = videoHtml;
-
-		var videoSection = document.querySelector('.jay-glazer-video-section');
-		videoSection.style.padding = '0';
 
 		var videoContainer = document.querySelector('.jay-glazer-video');
 		videoContainer.style.setProperty('bottom', '0', 'important');

@@ -169,7 +169,7 @@ body {
     aspect-ratio: 16 / 9;
 }
 
-.jay-glazer-video {
+.jay-glazer-video-section .jay-glazer-video {
     position: absolute;
     bottom: 10%;
     left: 50%;
@@ -177,7 +177,7 @@ body {
     transform: translateX(-50%);
 }
 
-.jay-glazer-video iframe {
+.jay-glazer-video-section .jay-glazer-video iframe {
     position: absolute;
     top: 0;
     left: 0;
@@ -185,7 +185,11 @@ body {
     height: 100%;
 }
 
-#jayGlazerVideo {
+.jay-glazer-video-section .video-container {
+    aspect-ratio: 16 / 9;
+}
+
+.jay-glazer-video-section #jayGlazerVideo {
     cursor: pointer;
 }
 
@@ -369,7 +373,12 @@ body {
     }
 
     .jay-glazer-video-section {
-        padding: 24rem 0 0rem 0;
+        padding: 22rem 0 0rem 0;
+        aspect-ratio: 1/1;
+    }
+
+    .jay-glazer-video-section .video-container {
+        aspect-ratio: 1/1;
     }
 
     .info-banner {
@@ -438,9 +447,9 @@ body {
     }
 
     #version-2 .wear-tech-section {
-       padding: 3rem 0;
+        padding: 3rem 0;
     }
-    
+
     #version-2 .rem-patch-section .add-to-cart-btn {
         padding: 6px 0px;
     }
@@ -449,7 +458,7 @@ body {
         font-size: 1rem;
     }
 
-    .jay-glazer-video {
+    .jay-glazer-video-section .jay-glazer-video {
         bottom: 2% !important;
     }
 }
@@ -485,5 +494,5 @@ body {
     #version-2 .jay-glazer-video-section {
         margin-top: 5rem !important;
     }
- 
+
 }
