@@ -155,9 +155,8 @@ body {
     padding: 8rem 4rem;
 }
 
-#version-2 .choose-rem-patch .woman-image {
-    background: url(../images/Sleep_patch_02.jpg) no-repeat center center;
-    background-size: cover;
+#version-2 .choose-rem-patch img {
+    border-radius: 15px;
 }
 
 /* jay glazer video section */
@@ -166,6 +165,7 @@ body {
     background: url(../images/cover-jay-no-copy.jpg) no-repeat center center;
     background-size: cover;
     padding: 18rem 0 4rem 0;
+    margin-top: 7rem;
 }
 
 .jay-glazer-video iframe {
@@ -360,11 +360,7 @@ body {
     }
 
     .jay-glazer-video-section {
-        padding: 4rem 0 !important;
-    }
-
-    .jay-glazer-video .video-container{
-        padding: 8rem 0;
+        padding: 4rem 0;
     }
     
     .info-banner {
@@ -467,10 +463,6 @@ body {
 
     #version-2 .sleep-deeply-video-section {
         padding: 15rem 0rem;
-    }
-
-    #version-2 .jay-glazer-video-section {
-        padding: 25rem 0 3rem 0;
     }
 
     #version-2 .logos-section img {
