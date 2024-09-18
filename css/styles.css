@@ -370,6 +370,10 @@ body {
 
 /* media queries */
 @media (max-width: 767px) {
+  .about-section .woman img {
+    height: auto;
+  }
+
   .sleep-deeply-video-section,
   .jay-glazer-video-section .video-container {
     aspect-ratio: 1/1;
