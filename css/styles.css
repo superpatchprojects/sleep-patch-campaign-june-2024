@@ -1,498 +1,495 @@
 body {
-    font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /*header section */
-.navbar {
-    opacity: 85%;
-    z-index: 2;
-}
-
-.navbar-toggler {
-    border: none;
-}
-
-.navbar-toggler:focus {
-    box-shadow: none;
-}
-
-.navbar-nav .nav-link {
-    color: #343A40;
-}
-
 .info-banner {
-    background-color: #313030;
-    color: #fff;
-    padding: 12px;
-    position: relative;
-    z-index: 2;
+  background-color: #313030;
+  color: #fff;
+  padding: 12px;
+  position: relative;
+  z-index: 2;
 }
 
-.banner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url(../images/rem-hero-banner.png) no-repeat center center;
-    background-size: cover !important;
-    z-index: 1;
-}
-
-.header .superpatch-logo {
-    max-width: 50%;
+.navbar .superpatch-logo {
+  height: 50px;
 }
 
 .banner-text {
-    position: relative;
-    z-index: 2;
-    padding: 10rem 2rem;
+  position: relative;
+  z-index: 2;
+  padding: 10rem 2rem;
 }
 
-#version-2 .banner {
-    background: url(../images/Sleep_patch_01.jpg) no-repeat center center;
+/* add to cart section */
+.add-to-cart-section img {
+  border-radius: 15px;
+  width: 100%;
+  height: 100%;
 }
 
-#version-2 .banner-text {
-    padding: 15rem 0rem;
-    filter: drop-shadow(0px 2px 1px #111);
+.rem-title {
+  color: #454545;
 }
 
-#version-2 .header .superpatch-logo {
-    height: 85%;
-    max-width: 50%;
+.rem-info-container {
+  position: absolute;
+  z-index: 2;
+  padding: 0 1rem 2rem 2rem;
 }
 
-/* rem patch section */
-.rem-patch-section .review .write-review {
-    color: #000000;
+.rem-info-text {
+  position: relative;
+  z-index: 2;
+  bottom: 0;
+  left: 28%;
+  transform: translate(-50%, 5%);
+  text-shadow: 1px 2px rgba(0, 0, 0, 0.8);
 }
 
-.rem-patch-section .rem-product {
-    object-fit: contain;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 8 / 6;
+.rem-info-text .preferred {
+  font-size: 1.25rem;
+  line-height: 24px;
 }
 
-.sleep-deeply {
-    font-weight: 400;
+.review .count,
+.review .total-reviews-count {
+  margin-bottom: -2px;
 }
 
 .price-per-pack .price {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 .quantity-input {
-    border-radius: 6px;
-    border: 1px solid #A7A5A5;
+  border-radius: 6px;
+  border: 1px solid #a7a5a5;
 }
 
 .quantity-btn,
 .quantity-btn:hover,
 .quantity-btn:active {
-    background-color: #D9D9D9 !important;
-    border-radius: 4px !important;
-    border: none;
+  background-color: #d9d9d9 !important;
+  border-radius: 4px !important;
+  border: none;
 }
 
 .quantity {
-    text-align: center;
-    border: none;
-    margin: 0 5px;
+  text-align: center;
+  border: none;
+  margin: 0 5px;
 }
 
 .quantity:focus {
-    box-shadow: none;
+  box-shadow: none;
 }
 
-#version-2 .rem-patch-section img {
-    border-radius: 15px;
+.benefits ul {
+  padding-left: 1rem;
 }
 
-/* about rem section */
-.good-sleep .woman-image {
-    background: url(../images/why-good-sleep-is-essential.png) no-repeat center center;
-    background-size: cover;
+/* marquee section */
+.marquee-section {
+  overflow: hidden;
 }
 
-.choose-rem-patch .mother-daughter-image {
-    background: url(../images/mother-daughter.png) no-repeat center center;
-    background-size: cover;
+.benefits-scroll {
+  overflow: hidden;
+  border-top: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
 }
 
-.amazing-results .woman-image {
-    background: url(../images/amazing-results-with-rem-super-patch.png) no-repeat center center;
-    background-size: cover;
+.benefits-tags {
+  display: flex;
 }
 
-.affordable-effective .family-image {
-    background: url(../images/family.png) no-repeat center center;
-    background-size: cover;
+.benefits-list {
+  display: flex;
+  flex-direction: row;
+  -webkit-animation: marquee 30s linear infinite;
+  animation: marquee 30s linear infinite;
 }
 
-.better-sleep-health .couple-image {
-    background: url(../images/couple.png) no-repeat center center;
-    background-size: cover;
+.benefits-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0 30px;
 }
 
-.transforming-sleep .woman-vibrotactile-tech-image {
-    background: url(../images/woman-vibrotactile-tech.png) no-repeat center center;
-    background-size: cover;
+.benefits-title {
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 2rem 0;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: #828282;
+  font-size: 18px;
 }
 
-.transform-life .family-image {
-    background: url(../images/family-02.png) no-repeat center center;
-    background-size: cover;
-}
-
-.no-risk .teammates-image {
-    background: url(../images/teammates.png) no-repeat center center;
-    background-size: cover;
-}
-
-.info-text {
-    padding: 8rem 4rem;
-}
-
-#version-2 .choose-rem-patch img {
-    border-radius: 15px;
-}
-
-/* jay glazer video section */
-.jay-glazer-video-section {
-    position: relative;
-    background: url(../images/cover-jay-no-copy.jpg) no-repeat top center;
-    background-size: cover;
-    height: auto;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-}
-
-.jay-glazer-video-section .jay-glazer-video {
-    position: absolute;
-    bottom: 10%;
-    left: 50%;
-    width: 100%;
-    transform: translateX(-50%);
-}
-
-.jay-glazer-video-section .jay-glazer-video iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.jay-glazer-video-section .video-container {
-    aspect-ratio: 16 / 9;
-}
-
-.jay-glazer-video-section #jayGlazerVideo {
-    cursor: pointer;
+@keyframes marquee {
+  0% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(-100%);
+  }
 }
 
 /* sleep deeply video section */
 .sleep-deeply-video-section {
-    background: url(../images/sleep-deeply.png) no-repeat center center;
-    background-size: cover;
-    padding: 10rem 0rem;
+  position: relative;
+  background: url(../images/sleep-deeply.png) no-repeat center center;
+  background-size: cover;
+  height: auto;
+  width: 100%;
+  aspect-ratio: 24 / 9;
 }
 
 #sleepDeeplyVideo {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 /* customers review section */
 .customers-review-section h4 {
-    font-weight: 400;
+  font-weight: 400;
 }
 
 .customers-review-section h5 {
-    font-weight: 400;
+  font-weight: 400;
 }
 
 .customers-review-section .item {
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
 }
 
 .name-initial {
-    width: 50px;
-    height: 50px;
-    background: #5E3063;
-    color: #fff;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 50px;
-}
-
-/* logos section */
-.logos-section img {
-    filter: grayscale(1);
-}
-
-/* sleepless nights section */
-.sleepless-nights-section {
-    background-image: url(../images/rem-bg-02.png);
-    background-size: cover;
-    background-position: top center;
-}
-
-/* advisory-board section */
-.advisory-board-section .item {
-    border-radius: 10px;
-}
-
-.advisory-board-section img {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-/* wear tech section */
-.wear-tech-section {
-    background-image: url(../images/rem-bg.png);
-    background-size: cover;
-    background-position: top center;
-}
-
-.how-it-works {
-    background-color: #FFFFFF;
-    border-radius: 10px;
-    padding: 20px 10px;
-    height: 100%;
-}
-
-.how-it-works img {
-    filter: grayscale(1);
-}
-
-#version-2 .wear-tech-section {
-    background-image: none;
-    padding: 6rem 0;
-    background-color: #5e3063;
-}
-
-#version-2 .wear-tech-section h2 {
-    margin-bottom: 3rem;
+  width: 50px;
+  height: 50px;
+  background: #5e3063;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
 }
 
 /* faq section */
 .faq-section .accordion-item {
-    border: none;
-    margin-bottom: 12px;
-    border-radius: 10px !important;
+  border: none;
+  margin-bottom: 12px;
+  border-radius: 10px !important;
 }
 
 .accordion-item .accordion-header .accordion-button {
-    border-top-left-radius: var(--bs-accordion-inner-border-radius);
-    border-top-right-radius: var(--bs-accordion-inner-border-radius);
-    border-bottom-left-radius: var(--bs-accordion-inner-border-radius);
-    border-bottom-right-radius: var(--bs-accordion-inner-border-radius);
+  border-top-left-radius: var(--bs-accordion-inner-border-radius);
+  border-top-right-radius: var(--bs-accordion-inner-border-radius);
+  border-bottom-left-radius: var(--bs-accordion-inner-border-radius);
+  border-bottom-right-radius: var(--bs-accordion-inner-border-radius);
 }
 
 .accordion-button:not(.collapsed) {
-    background-color: #ffffff;
-    box-shadow: none !important;
+  background-color: #ffffff;
+  box-shadow: none !important;
 }
 
 .accordion-button:focus {
-    box-shadow: none;
+  box-shadow: none;
+}
+
+/* jay glazer video section */
+.jay-glazer-video-section {
+  position: relative;
+  background: url(../images/cover-jay-no-copy.jpg) no-repeat top center;
+  background-size: cover;
+  height: auto;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.jay-glazer-video-section .jay-glazer-video {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  width: 100%;
+  transform: translateX(-50%);
+}
+
+.jay-glazer-video-section .jay-glazer-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.jay-glazer-video-section .video-container {
+  aspect-ratio: 16 / 9;
+}
+
+.jay-glazer-video-section #jayGlazerVideo {
+  cursor: pointer;
+}
+
+/* how to apply section */
+.step-image-container {
+  position: relative;
+  width: fit-content;
+}
+
+.step-image {
+  position: relative;
+  z-index: 2;
+  filter: saturate(0.75);
+}
+
+.background-box {
+  position: absolute;
+  top: 56%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f7f7f7;
+  width: 100%;
+  height: 88%;
+  z-index: 1;
+  border-radius: 10px;
+}
+
+.number {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  background: #663c6c;
+  height: 50px;
+  width: 50px;
+  z-index: 2;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 20px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* sleepless nights section */
+.sleepless-nights-section {
+  background-image: url(../images/rem-bg-02.png);
+  background-size: cover;
+  background-position: center center;
+}
+
+/* advisory-board section */
+.advisory-board-section .item {
+  border-radius: 10px;
+}
+
+.advisory-board-section img {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* about section */
+.about-section .woman img {
+  object-fit: cover;
+  aspect-ratio: 16/9;
+  object-position: center;
+  height: 100%;
 }
 
 /* cart modal */
 .cart-modal {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #fff;
-    color: #000;
-    z-index: 3;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-    border: 1px solid rgb(0 0 0 / 13%);
-    box-shadow: 0px 2px 10px 4px rgba(0, 0, 0, 0.125);
-    width: 100%;
-    max-width: 1322px;
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  color: #000;
+  z-index: 3;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border: 1px solid rgb(0 0 0 / 13%);
+  box-shadow: 0px 2px 10px 4px rgba(0, 0, 0, 0.125);
+  width: 100%;
+  max-width: 1322px;
 }
 
 .quantities .quantity-select {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 /* footer section */
 .footer-section .bi {
-    color: #828282
+  color: #828282;
 }
 
 .footer-section a {
-    color: #000;
-    text-decoration: none;
+  color: #000;
+  text-decoration: none;
 }
 
 /* global */
 .stars {
-    color: #FBBC05;
+  color: #fbbc05;
 }
 
 .light-gray-bg {
-    background-color: #F7F7F7;
+  background-color: #f7f7f7;
 }
 
 .btn-red {
-    background-color: #EF0C0C;
-    border-color: #EF0C0C;
-    color: #ffffff;
-    padding: 4px 40px;
+  background-color: #ef0c0c;
+  border-color: #ef0c0c;
+  color: #ffffff;
+  padding: 6px 18px;
 }
 
 .btn-red:hover,
 .btn-red:active {
-    background-color: #CC0000 !important;
-    border-color: #CC0000 !important;
-    color: #ffffff !important;
+  background-color: #cc0000 !important;
+  border-color: #cc0000 !important;
+  color: #ffffff !important;
 }
 
 .owl-carousel .owl-stage {
-    display: flex;
+  display: flex;
 }
 
 .card-item {
-    height: 100%;
+  height: 100%;
+}
+
+.sub-heading-color {
+  color: #343a40;
 }
 
 /* media queries */
 @media (max-width: 767px) {
-    .sleep-deeply-video-section {
-        background: url(../images/sleep-deeply-mobile.png) no-repeat center center;
-        background-size: cover;
-        padding: 5rem 0rem !important;
-    }
+  .sleep-deeply-video-section,
+  .jay-glazer-video-section .video-container {
+    aspect-ratio: 1/1;
+  }
 
-    .jay-glazer-video-section {
-        padding: 22rem 0 0rem 0;
-        aspect-ratio: 1/1;
-    }
+  .jay-glazer-video-section {
+    aspect-ratio: 1 / 1;
+    padding: 22rem 0 0;
+  }
 
-    .jay-glazer-video-section .video-container {
-        aspect-ratio: 1/1;
-    }
+  .pack {
+    font-size: 12px !important;
+  }
 
-    .info-banner {
-        background-color: rgba(48, 48, 48, .4);
-    }
+  .discover-section h2 {
+    font-size: 22px;
+  }
 
-    .banner {
-        background: url(../images/rem-hero-banner-mobile.jpg) no-repeat center center;
-    }
+  .rem-info-container {
+    padding: 0 24px 24px;
+  }
 
-    #version-2 .banner {
-        background: url(../images/Sleep_patch_mobile_01.jpg) no-repeat center center;
-    }
+  .add-to-cart-section .rem-patch {
+    width: 40%;
+  }
 
-    #version-2 .info-banner {
-        background-color: #313030;
-    }
+  .rem-info-text {
+    bottom: 0;
+    left: 0;
+    transform: none;
+    margin-top: 1rem;
+  }
 
-    #version-2 .info-banner p {
-        font-size: 80%;
-    }
+  .rem-info-text h2 {
+    font-size: 34px;
+  }
 
-    #version-2 .header .superpatch-logo {
-        height: 45px;
-    }
+  .rem-info-text .preferred {
+    font-size: 16px;
+  }
+
+  .rem-info-text .benefits-text {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .sleep-deeply-video-section {
+    aspect-ratio: 16/9;
+  }
+
+  .rem-info-text h2 {
+    font-size: 50px;
+  }
+
+  .rem-info-text .preferred {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  .rem-info-text .benefits-text {
+    font-size: 16px;
+  }
 }
 
 @media (max-width: 992px) {
-    .banner-text {
-        padding: 8rem 2rem 4rem 2rem !important;
-    }
+  .p-xs {
+    padding: 0 24px;
+  }
 
-    .info-text {
-        padding: 50px 10px;
-    }
+  .sleepless-nights-section .owl-carousel .percentage {
+    font-size: 7rem;
+  }
 
-    .better-sleep-health .light-gray-bg {
-        background-color: transparent !important;
-    }
+  .jay-glazer-video-section .jay-glazer-video {
+    bottom: 2% !important;
+  }
 
-    .sleepless-nights-section .owl-carousel .percentage {
-        font-size: 7rem;
-    }
-
-    .wear-tech-section {
-        background-image: none;
-        background-color: #5E3063;
-    }
-
-    .about-rem-section img {
-        object-fit: cover;
-        width: 100%;
-        height: auto;
-        aspect-ratio: 1.75;
-        object-position: center;
-        border-radius: 10px;
-    }
-
-    #version-2 .banner-text {
-        padding-top: 15vh !important;
-        padding-bottom: 15vh !important;
-    }
-
-    #version-2 .about-rem-section img {
-        aspect-ratio: 2 / 1.2;
-    }
-
-    #version-2 .wear-tech-section {
-        padding: 3rem 0;
-    }
-
-    #version-2 .rem-patch-section .add-to-cart-btn {
-        padding: 6px 0px;
-    }
-
-    #version-2 .rem-info p.small {
-        font-size: 1rem;
-    }
-
-    .jay-glazer-video-section .jay-glazer-video {
-        bottom: 2% !important;
-    }
+  .about-section img {
+    border-radius: 15px;
+  }
 }
 
-@media (min-width: 992px) and (max-width: 1199px) {
-    #version-2 .how-it-works {
-        padding: 20px 10px 0px 10px;
-    }
+@media (min-width: 992px) and (max-width: 1400px) {
+  .sleep-deeply-video-section {
+    aspect-ratio: 16/9;
+  }
 
-    #version-2 .wear-tech-section p {
-        font-size: 14px;
-    }
+  .add-to-cart-section img {
+    object-fit: cover;
+  }
 
-    #version-2 .rem-patch-bg {
-        display: flex;
-        align-items: end;
-    }
+  .add-to-cart-section .sleep-more {
+    object-position: left center;
+  }
+
+  .pack {
+    font-size: 14px !important;
+  }
+
+  .rem-title {
+    font-size: 47px;
+  }
+
+  .rem-info-text h2 {
+    font-size: 31px;
+  }
+
+  .rem-info-text .preferred {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .rem-info-text .benefits-text {
+    font-size: 11px;
+  }
 }
 
 @media (min-width: 1400px) {
-    #version-2 .wear-tech-section .how-it-works img {
-        max-width: 60%;
-    }
-
-    #version-2 .sleep-deeply-video-section {
-        padding: 15rem 0rem;
-    }
-
-    #version-2 .logos-section img {
-        width: 60%;
-    }
-
-    #version-2 .jay-glazer-video-section {
-        margin-top: 5rem !important;
-    }
-
+  .jay-glazer-section {
+    margin-top: 6rem !important;
+  }
 }
