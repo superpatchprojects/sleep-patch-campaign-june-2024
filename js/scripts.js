@@ -90,7 +90,7 @@ if (window.location.hash) {
 		var videoHtml = `
 			<div class="col-md-8 offset-md-2 mb-4">
 				<div class="ratio ratio-16x9">
-					<iframe src="https://www.youtube.com/embed/d-nrcP5avSs?autoplay=1&rel=0" title="How It Works" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+					<iframe src="https://www.youtube.com/embed/4hE5jBEqA1c?autoplay=1&rel=0" title="How It Works" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 				</div>
 			</div>
 		`;
