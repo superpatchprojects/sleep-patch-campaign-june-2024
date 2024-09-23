@@ -243,7 +243,6 @@ body {
 .step-image {
   position: relative;
   z-index: 2;
-  filter: saturate(0.75);
 }
 
 .background-box {
@@ -263,17 +262,18 @@ body {
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 50%);
-  background: #663c6c;
-  height: 50px;
-  width: 50px;
+  background: #fff;
+  height: 45px;
+  width: 45px;
   z-index: 2;
   border-radius: 50%;
   font-weight: 800;
   font-size: 20px;
-  color: #fff;
+  color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 3px solid #5e3063;
 }
 
 /* sleepless nights section */
