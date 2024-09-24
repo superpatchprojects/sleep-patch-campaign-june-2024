@@ -8,6 +8,48 @@ if (window.location.hash) {
   }
 }
 
+// compare section - accordion mobile
+document.querySelectorAll(".toggle").forEach((cell) => {
+  cell.addEventListener("click", function () {
+    const chevron = this.querySelector(".toggle-chevron");
+    const benefitTexts =
+      this.closest("tr").nextElementSibling.querySelectorAll(".pros-cons");
+    const isExpanded = benefitTexts[0].style.display === "inline";
+
+    benefitTexts.forEach((text) => {
+      text.style.display = isExpanded ? "none" : "inline";
+    });
+
+    chevron.classList.toggle("bi-chevron-down", isExpanded);
+    chevron.classList.toggle("bi-chevron-up", !isExpanded);
+  });
+});
+
+// compare section
+document.addEventListener("DOMContentLoaded", function () {
+  const overviewBtn = document.getElementById("overview-btn");
+  const detailedBtn = document.getElementById("detailed-btn");
+
+  overviewBtn.classList.add("active");
+  detailedBtn.classList.remove("active");
+});
+
+document.getElementById("overview-btn").addEventListener("click", function () {
+  document.querySelector("table").classList.remove("detailed-active");
+
+  this.classList.add("active");
+  document.getElementById("detailed-btn").classList.remove("active");
+});
+
+document.getElementById("detailed-btn").addEventListener("click", function () {
+  document.querySelector("table").classList.add("detailed-active");
+
+  this.classList.add("active");
+  document.getElementById("overview-btn").classList.remove("active");
+});
+
+
+// zoom scren
 function applyZoom() {
   if (screen.width > 1920 && screen.height > 1440) {
     const zoomLevel = 1920 / 1440;
