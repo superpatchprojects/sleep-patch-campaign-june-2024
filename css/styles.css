@@ -157,8 +157,8 @@ body {
 .large-screen .btn.active,
 .large-screen .btn:hover {
   color: #fff;
-  background: #623A69;
-  border: 1px #623A69 solid;
+  background: #623a69;
+  border: 1px #623a69 solid;
   border-radius: 30px;
   font-weight: 700;
   cursor: pointer;
@@ -167,9 +167,9 @@ body {
 
 .large-screen .btn-overview,
 .large-screen .btn-detailed {
-  color: #623A69;
+  color: #623a69;
   background: #fff;
-  border: 1px #623A69 solid;
+  border: 1px #623a69 solid;
   border-radius: 30px;
   font-weight: 700;
   cursor: pointer;
@@ -214,7 +214,7 @@ body {
 }
 
 .compare-section th {
-  background-color: #623A69;
+  background-color: #623a69;
   color: #fff;
 }
 
@@ -294,7 +294,7 @@ body {
 
 .jay-glazer-video-section .jay-glazer-video {
   position: absolute;
-  bottom: 10%;
+  bottom: 5%;
   left: 50%;
   width: 100%;
   transform: translateX(-50%);
@@ -378,8 +378,8 @@ body {
 /* about section */
 .about-section .woman img {
   object-fit: cover;
-  aspect-ratio: 16/9;
-  object-position: center;
+  aspect-ratio: 4 / 3;
+  object-position: bottom center;
   height: 100%;
 }
 
@@ -463,7 +463,7 @@ body {
   }
 
   .pack {
-    font-size: 12px !important;
+    font-size: 11px !important;
   }
 
   .discover-section h2 {
@@ -503,6 +503,10 @@ body {
     aspect-ratio: 16/9;
   }
 
+  .jay-glazer-video-section {
+    aspect-ratio: 1/1;
+  }
+
   .rem-info-text h2 {
     font-size: 50px;
   }
@@ -520,6 +524,8 @@ body {
 @media (max-width: 992px) {
   .about-section .woman img {
     height: auto;
+    aspect-ratio: 16 / 9;
+    object-position: center;
   }
 
   .p-xs {
@@ -542,6 +548,10 @@ body {
 @media (min-width: 992px) and (max-width: 1400px) {
   .sleep-deeply-video-section {
     aspect-ratio: 16/9;
+  }
+
+  .jay-glazer-video-section {
+    aspect-ratio: 1/1;
   }
 
   .add-to-cart-section img {
@@ -571,11 +581,5 @@ body {
 
   .rem-info-text .benefits-text {
     font-size: 11px;
-  }
-}
-
-@media (min-width: 1400px) {
-  .jay-glazer-section {
-    padding-top: 6rem !important;
   }
 }
