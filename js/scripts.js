@@ -12,8 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const stickyNavbar = document.querySelector(".sticky-add-to-cart");
   const addToCartSections = document.querySelectorAll("#addToCart");
 
-  const toggleNavbarVisibility = (isVisible) => {
-    stickyNavbar.style.display = isVisible ? "block" : "none";
+  const toggleNavbarVisibility = (isAnyVisible) => {
+    if (isAnyVisible) {
+      stickyNavbar.classList.add('show');
+    } else {
+      stickyNavbar.classList.remove('show');
+    }
   };
 
   const checkInitialVisibility = () => {

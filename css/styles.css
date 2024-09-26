@@ -4,11 +4,19 @@ body {
 
 /* sticky add to cart */
 .sticky-add-to-cart {
-  display: none;
   background-color: #fff;
   box-shadow: 0 8px 24px rgba(38, 38, 38, 0.125);
-  padding: 10px 0;
+  z-index: 1099;
+  position: fixed;
+  top: -200px;
+  transition: top 0.4s ease-in-out;
+  width: 100%;
+  padding: 1rem 0;
 }
+
+.sticky-add-to-cart.show {
+  top: 0
+}  
 
 .sticky-add-to-cart .price {
   font-weight: 500;
