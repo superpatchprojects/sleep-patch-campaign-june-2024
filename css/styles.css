@@ -564,6 +564,10 @@ body {
 }
 
 @media (min-width: 992px) and (max-width: 1400px) {
+  .sticky-add-to-cart .title {
+    font-size: 16px !important;
+  }
+
   .sleep-deeply-video-section {
     aspect-ratio: 16/9;
   }
