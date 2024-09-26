@@ -16,7 +16,17 @@ document.addEventListener("DOMContentLoaded", () => {
     stickyNavbar.style.display = isVisible ? "block" : "none";
   };
 
-  toggleNavbarVisibility(false);
+  const checkInitialVisibility = () => {
+    if (addToCartSections.length > 0) {
+      const addToCartRect = addToCartSections[0].getBoundingClientRect();
+      const isVisible = addToCartRect.top < window.innerHeight && addToCartRect.bottom > 0;
+      toggleNavbarVisibility(!isVisible); 
+    }
+  };
+
+  setTimeout(() => {
+    checkInitialVisibility();
+  }, 100);
 
   const observerOptions = {
     root: null,
