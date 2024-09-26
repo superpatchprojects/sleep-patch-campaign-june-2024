@@ -8,6 +8,36 @@ if (window.location.hash) {
   }
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  const stickyNavbar = document.querySelector(".sticky-add-to-cart");
+  const addToCartSections = document.querySelectorAll("#addToCart");
+
+  const toggleNavbarVisibility = (isVisible) => {
+    stickyNavbar.style.display = isVisible ? "block" : "none";
+  };
+
+  toggleNavbarVisibility(false);
+
+  const observerOptions = {
+    root: null,
+    threshold: 0.1,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        toggleNavbarVisibility(false);
+      } else {
+        toggleNavbarVisibility(true);
+      }
+    });
+  }, observerOptions);
+
+  addToCartSections.forEach((section) => {
+    observer.observe(section);
+  });
+});
+
 // compare section - accordion mobile
 document.querySelectorAll(".toggle").forEach((cell) => {
   cell.addEventListener("click", function () {
@@ -179,6 +209,7 @@ window.addEventListener("resize", applyZoom);
   const max_qty_available = parseInt(document.body.dataset.maxQuantity);
 
   const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+  const addToCartMbl = document.querySelector(".add-to-cart-mbl");
   const checkoutButtons = document.querySelectorAll('[data-action="checkout"]');
   const plusButtons = document.querySelectorAll(".plus-btn");
   const minusButtons = document.querySelectorAll(".minus-btn");
@@ -189,6 +220,41 @@ window.addEventListener("resize", applyZoom);
 
   // add to cart and cart modal
   inputFields.forEach((inp) => (inp.max = max_qty_available));
+
+  addToCartMbl.addEventListener("click", async function () {
+    const quantityInputMbl = document.querySelector(".quantity-input input[type='number']");
+    let quantity = parseInt(quantityInputMbl.value);
+    
+    if (quantity === 0) return;
+  
+    currentQuantity += quantity;
+  
+    let new_qty_available = max_qty_available - currentQuantity;
+  
+    inputFields.forEach((inp) => {
+      inp.max = new_qty_available;
+      inp.value = Math.min(1, new_qty_available);
+    });
+    
+    quantitySelect.value = currentQuantity;
+    updateTotalPrice(max_qty_available - new_qty_available);
+    
+    document.getElementById("cartModalOverlay").style.display =
+      max_qty_available - new_qty_available === 0 ? "" : "block";
+    quantitySelect.closest(".row").querySelector("button").dataset.quantity =
+      max_qty_available - new_qty_available;
+  
+    let event = new CustomEvent("add_to_cart", {
+      detail: {
+        item_id: productId,
+        item_sku: productId.slice(0, -2),
+        item_name: productName,
+        item_price: pricePerItem,
+        quantity: quantity,
+      },
+    });
+    document.dispatchEvent(event);
+  });
 
   addToCartButtons.forEach((button) => {
     button.addEventListener("click", async function () {
