@@ -8,6 +8,7 @@ if (window.location.hash) {
   }
 }
 
+// sticky add to cart
 document.addEventListener("DOMContentLoaded", () => {
   const stickyNavbar = document.querySelector(".sticky-add-to-cart");
   const addToCartSections = document.querySelectorAll("#addToCart");
@@ -93,20 +94,18 @@ document.getElementById("detailed-btn").addEventListener("click", function () {
 });
 
 
-// zoom scren
-function applyZoom() {
-  if (screen.width > 1920 && screen.height > 1440) {
-    const zoomLevel = 1920 / 1440;
+// zoom screen
+// function applyZoom() {
+//   if (window.innerWidth > 1920 && window.innerHeight > 800) {
+//     const zoomLevel = 1920 / 1440;
 
-    document.body.style.zoom = zoomLevel;
-  } else {
-    document.body.style.zoom = 1;
-  }
-}
+//     document.body.style.zoom = zoomLevel;
+//   } else {
+//     document.body.style.zoom = 1;
+//   }
+// }
 
-applyZoom();
-
-window.addEventListener("resize", applyZoom);
+// applyZoom();
 
 (async function ($) {
   $(".reviews").owlCarousel({

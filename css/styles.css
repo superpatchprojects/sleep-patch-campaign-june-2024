@@ -309,9 +309,9 @@ body {
   position: relative;
   background: url(../images/cover-jay-no-copy.jpg) no-repeat top center;
   background-size: cover;
-  height: auto;
+  height: 100%;
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 4/2;
 }
 
 .jay-glazer-video-section .jay-glazer-video {
@@ -331,7 +331,7 @@ body {
 }
 
 .jay-glazer-video-section .video-container {
-  aspect-ratio: 4/3;
+  aspect-ratio: 4/2;
 }
 
 .jay-glazer-video-section #jayGlazerVideo {
@@ -400,8 +400,8 @@ body {
 /* about section */
 .about-section .woman img {
   object-fit: cover;
-  aspect-ratio: 4 / 3;
-  object-position: bottom center;
+  aspect-ratio: 4/2.2;
+  object-position: center;
   height: 100%;
 }
 
@@ -529,8 +529,8 @@ body {
     aspect-ratio: 16/9;
   }
 
-  .jay-glazer-video-section {
-    aspect-ratio: 1/1;
+  .jay-glazer-video-section .title {
+    font-size: 32px;
   }
 
   .rem-info-text h2 {
@@ -556,6 +556,7 @@ body {
     height: auto;
     aspect-ratio: 16 / 9;
     object-position: center;
+    border-radius: 15px;
   }
 
   .p-xs {
@@ -569,10 +570,6 @@ body {
   .jay-glazer-video-section .jay-glazer-video {
     bottom: 2% !important;
   }
-
-  .about-section img {
-    border-radius: 15px;
-  }
 }
 
 @media (min-width: 992px) and (max-width: 1400px) {
@@ -582,10 +579,6 @@ body {
 
   .sleep-deeply-video-section {
     aspect-ratio: 16/9;
-  }
-
-  .jay-glazer-video-section {
-    aspect-ratio: 1/1;
   }
 
   .add-to-cart-section img {
