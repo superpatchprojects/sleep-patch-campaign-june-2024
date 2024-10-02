@@ -476,6 +476,11 @@ body {
   color: #343a40;
 }
 
+#privacyPolicyModal, 
+#returnsPolicyModal {
+  z-index: 9999;
+}
+
 /* media queries */
 @media (max-width: 767px) {
   .sleep-deeply-video-section,
@@ -527,10 +532,6 @@ body {
 @media (min-width: 768px) and (max-width: 991px) {
   .sleep-deeply-video-section {
     aspect-ratio: 16/9;
-  }
-
-  .jay-glazer-video-section .title {
-    font-size: 32px;
   }
 
   .rem-info-text h2 {

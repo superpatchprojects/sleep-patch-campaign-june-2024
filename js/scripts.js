@@ -71,14 +71,6 @@ document.querySelectorAll(".toggle").forEach((cell) => {
 });
 
 // compare section
-document.addEventListener("DOMContentLoaded", function () {
-  const overviewBtn = document.getElementById("overview-btn");
-  const detailedBtn = document.getElementById("detailed-btn");
-
-  overviewBtn.classList.add("active");
-  detailedBtn.classList.remove("active");
-});
-
 document.getElementById("overview-btn").addEventListener("click", function () {
   document.querySelector("table").classList.remove("detailed-active");
 
@@ -93,19 +85,6 @@ document.getElementById("detailed-btn").addEventListener("click", function () {
   document.getElementById("overview-btn").classList.remove("active");
 });
 
-
-// zoom screen
-// function applyZoom() {
-//   if (window.innerWidth > 1920 && window.innerHeight > 800) {
-//     const zoomLevel = 1920 / 1440;
-
-//     document.body.style.zoom = zoomLevel;
-//   } else {
-//     document.body.style.zoom = 1;
-//   }
-// }
-
-// applyZoom();
 
 (async function ($) {
   $(".reviews").owlCarousel({
