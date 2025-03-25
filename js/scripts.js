@@ -131,8 +131,8 @@ if (window.location.hash) {
     // -----------------------------------------
     // CONSTANTS
     // -----------------------------------------
-    const SHOP_DOMAIN = "superpatch-wholesale-dev-store-1.myshopify.com";
-    const STOREFRONT_TOKEN = "209faccc7c02ca0b35f37295c2be3f18";
+    const SHOP_DOMAIN = "store.superpatch.com";
+    const STOREFRONT_TOKEN = "446d09be3c60038e8da0f4a0970afb1e";
     const MAX_CART_QUANTITY = document.body.dataset.maxQuantity || 10;
     const VARIANT_ID = document.body.dataset.variant;
     const CART_STORAGE_KEY = "cartId";
