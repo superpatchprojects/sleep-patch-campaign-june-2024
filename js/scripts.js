@@ -249,6 +249,9 @@ if (window.location.hash) {
                 `gid://shopify/ProductVariant/${variantId}`
         );
 
+        console.log(111, existingLine);
+        
+
         const query = existingLine
             ? `mutation cartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
                 cartLinesUpdate(cartId: $cartId, lines: $lines) { cart ${CART_QUERY} }
