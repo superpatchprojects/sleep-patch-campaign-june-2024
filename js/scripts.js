@@ -250,6 +250,7 @@ if (window.location.hash) {
         );
 
         console.log(111, existingLine);
+        console.log(222, globalCart);
         
 
         const query = existingLine
